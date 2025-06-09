@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda - Urban Vibe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/Urban_Vibe/img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            padding-top: 100px;
+        }
+
+        .card-img-top {
+            border-radius: 15px 15px 0 0;
+            object-fit: fill;
+            height: 280px;
+            width: 100%;
+            filter: brightness(0.95);
+            transition: filter 0.3s ease;
+        }
+
+        .card-img-top:hover {
+            filter: brightness(1);
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .detalle-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px 15px 0 0;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .card:hover .detalle-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header"></div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <div class="container text-center mt-5">
+            <h2 class="mb-5 fs-4" style="letter-spacing: 8px; font-weight: bolder;">TIENDA</h2>
+            <div id="productos-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-5"></div>
+        </div>
+
+        <script>
+            const productos = [
+                { id: 1, nombre: 'Polera Negra', precio: 89.90, precioAnterior: 119.90 },
+                { id: 2, nombre: 'Camiseta Blanca', precio: 49.90, precioAnterior: 69.90 },
+                { id: 3, nombre: 'Camisa de Jean', precio: 149.90 },
+                { id: 4, nombre: 'Camisa Oxford', precio: 129.90 },
+                { id: 5, nombre: 'Polo de Algodón', precio: 69.90 },
+                { id: 6, nombre: 'Casaca Urbana', precio: 179.90, precioAnterior: 219.90, destacado: true },
+                { id: 7, nombre: 'Saco negro', precio: 229.90 },
+                { id: 8, nombre: 'Camisa Manga Corta', precio: 99.90, precioAnterior: 119.90 },
+                { id: 9, nombre: 'Camisa Casual', precio: 109.90 },
+                { id: 10, nombre: 'Chaqueta Denim', precio: 149.90, precioAnterior: 189.90 },
+                { id: 11, nombre: 'Blusa Floral', precio: 79.90, precioAnterior: 99.90 },
+                { id: 12, nombre: 'Falda Plisada', precio: 89.90 },
+                { id: 13, nombre: 'Vestido Midi', precio: 139.90, precioAnterior: 169.90 },
+                { id: 14, nombre: 'Top de Encaje', precio: 59.90 },
+                { id: 15, nombre: 'Pantalón Palazzo', precio: 119.90 },
+                { id: 16, nombre: 'Falda-Short de Jean Mujer', precio: 69.90 },
+                { id: 17, nombre: 'Casaca Oversize Mujer', precio: 199.90, precioAnterior: 239.90 },
+                { id: 18, nombre: 'Blazer Femenino', precio: 159.90 },
+                { id: 19, nombre: 'Jogger Deportivo Mujer', precio: 89.90 },
+                { id: 20, nombre: 'Enterizo Casual', precio: 149.90 },
+                { id: 21, nombre: 'Pantalón Chino Hombre', precio: 119.90 },
+                { id: 22, nombre: 'Polera con Capucha', precio: 99.90, precioAnterior: 129.90 },
+                { id: 23, nombre: 'Pantalón Jogger Hombre', precio: 89.90 },
+                { id: 24, nombre: 'Camiseta Estampada', precio: 59.90 },
+                { id: 25, nombre: 'Casaca Bomber Hombre', precio: 189.90 },
+                { id: 26, nombre: 'Camisa Slim Fit', precio: 119.90 },
+                { id: 27, nombre: 'Polo Básico Hombre', precio: 39.90 },
+                { id: 28, nombre: 'Short Cargo Hombre', precio: 79.90 },
+                { id: 29, nombre: 'Chaleco Acolchado', precio: 139.90 },
+                { id: 30, nombre: 'Casaca Impermeable', precio: 159.90, precioAnterior: 199.90 },
+            ];
+
+            const container = document.getElementById('productos-container');
+
+            productos.forEach(item => {
+                const col = document.createElement('div');
+                col.className = 'col';
+
+                const card = document.createElement('div');
+                card.className = 'card h-100 border-0 shadow-sm position-relative';
+
+                const img = document.createElement('img');
+                img.src = `../Urban_Vibe/img/${item.id}.jpg`;
+                img.className = 'card-img-top';
+                img.alt = item.nombre;
+
+                const overlay = document.createElement('a');
+                overlay.href = `/Urban_Vibe/detalle_tienda.html?id=${item.id}`;
+                overlay.className = 'detalle-overlay';
+                overlay.textContent = 'Ver más info';
+
+                const imgContainer = document.createElement('div');
+                imgContainer.style.position = 'relative';
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(overlay);
+
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+
+                const nombre = document.createElement('h6');
+                nombre.className = 'card-title text-muted';
+                nombre.textContent = item.nombre;
+
+                const precio = document.createElement('p');
+                precio.className = 'card-text';
+
+                if (item.precioAnterior) {
+                    const precioAnterior = document.createElement('span');
+                    precioAnterior.className = 'text-decoration-line-through text-muted me-1';
+                    precioAnterior.textContent = `S/. ${item.precioAnterior}`;
+                    precio.appendChild(precioAnterior);
+                }
+
+                const precioActual = document.createElement('span');
+                precioActual.textContent = `S/. ${item.precio}`;
+                precio.appendChild(precioActual);
+
+                cardBody.appendChild(nombre);
+                cardBody.appendChild(precio);
+
+                card.appendChild(imgContainer);
+                card.appendChild(cardBody);
+
+                if (item.destacado) {
+                    const badge = document.createElement('div');
+                    badge.className = 'position-absolute top-0 start-0 badge bg-secondary m-2';
+                    badge.textContent = 'Mejor vendido';
+                    card.appendChild(badge);
+                }
+
+                col.appendChild(card);
+                container.appendChild(col);
+            });
+        </script>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+    <!-- SCRIPT DE HEADER Y FOOTER -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

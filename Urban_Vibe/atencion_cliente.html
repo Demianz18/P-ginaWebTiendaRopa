@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Atención al Cliente - Urban Vibe</title>
+  <link rel="icon" href="/Urban_Vibe/img/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Monserat', sans-serif;
+      margin: 0;
+      padding-top: 120px;
+      line-height: 1.6;
+      color: #222;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      text-align: center;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto 40px auto;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+
+    .formulario {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 20px;
+      align-items: flex-start;
+    }
+
+    .formulario div {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    form {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    .faq-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .faq-columns div {
+      flex: 1 1 45%;
+    }
+
+
+
+    p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header cargado dinámicamente -->
+  <div id="header"></div>
+
+  <!-- Sección: Atención al Cliente -->
+  <section class="contacto">
+    <h2 class="mb-5 " style="letter-spacing: 8px; font-weight: bolder;">ATENCIÓN AL CLIENTE </h2>
+    <br><br>
+    <p>
+      En nuestra tienda, la atención al cliente es inclusiva y accesible para todos.
+      Si tienes discapacidad auditiva, puedes comunicarte con nosotros a través de mensajes de texto,
+      correo electrónico o chat en línea. Nuestro equipo está capacitado para brindarte una respuesta clara,
+      rápida y respetuosa. También contamos con videos informativos con subtítulos y estamos trabajando
+      para ofrecer atención en Lengua de Señas. Tu comodidad y confianza son lo más importante para nosotros.
+    </p>
+
+    <div class="formulario">
+      <div>
+        <br>
+        <p><strong>¿Tienes alguna pregunta?</strong><br>¡Estamos aquí para ayudarte!</p>
+        <br>
+        <p><strong>Llámanos al:</strong><br>914-123-456</p>
+        <br>
+        <p><strong>Email:</strong><br>info@urbanvibe.com</p>
+      </div>
+
+      <form>
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Teléfono">
+        <textarea rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Separador -->
+  <hr style="width: 90%; height: 1px; background-color: #000; border: none; margin: 25px auto;">
+
+  <!-- Sección: Devoluciones -->
+  <section class="devoluciones">
+    <h2 class="fs-3" style="letter-spacing: 8px; font-weight: bolder;">DEVOLUCIONES</h2>
+    <br><br>
+    <p>
+      En Urban Vibe puedes devolver tus prendas dentro de los 15 días posteriores a la entrega, siempre que estén sin
+      uso y con etiquetas.
+      Si tienes discapacidad auditiva, puedes comunicarte con nosotros por chat o correo electrónico y con gusto te
+      ayudaremos en todo el proceso.
+    </p>
+  </section>
+
+  <!-- Separador -->
+  <hr style="width: 90%; height: 1px; background-color: #000; border: none; margin: 25px auto;">
+
+  <!-- Sección: Preguntas Frecuentes -->
+  <section class="faq">
+    <h2 class="mb-5 fs-3" style="letter-spacing: 8px; font-weight: bolder;">FAQ</h2>
+    <br><br>
+    <div class="faq-columns">
+      <div>
+        <h4 class="fs-5" style="letter-spacing: 2px; font-weight: bolder;">¿Cómo puedo devolver un producto?</h4>
+        <p>
+          Devolver un producto es fácil. Solo tienes que contactarnos por correo electrónico, chat o mensaje de texto
+          indicando tu número de pedido y el motivo de la devolución. Te enviaremos las instrucciones paso a paso para
+          hacer el envío.
+          Recuerda que el producto debe estar en buen estado, sin uso y con su empaque original.
+        </p>
+        <br>
+        <h4 class="fs-5" style="letter-spacing: 2px; font-weight: bolder;">¿Cuál es tu política de retorno?</h4>
+        <p>
+          Aceptamos devoluciones dentro de los 30 días posteriores a la compra. Los productos deben estar sin uso,
+          en perfectas condiciones y con su etiqueta original. Si el artículo tiene algún defecto o recibiste un
+          producto incorrecto, cubrimos el costo del envío de la vuelta. Nuestro objetivo es que te sientas
+          seguro(a) comprando con nosotros.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="fs-5" style="letter-spacing: 2px; font-weight: bolder;">¿Cómo puedo rastrear mi pedido?</h4>
+        <p>
+          Una vez que tu pedido haya sido enviado, recibirás un correo electrónico o mensaje de texto con un enlace de
+          seguimiento.
+          Solo debes hacer clic en ese enlace para ver el estado de tu envío en tiempo real. Si necesitas ayuda,
+          puedes escribirnos por correo o chat y con gusto te asistiremos.
+        </p>
+        <br><br>
+        <h4 class="fs-5" style="letter-spacing: 2px; font-weight: bolder;">¿Cuáles son las opciones de envío?</h4>
+        <p>
+          Ofrecemos varias opciones de envío para que elijas la que mejor se adapte a ti. Contamos con envío estándar,
+          exprés y envío gratuito en compras superiores a cierto monto. Los tiempos de entrega y costos varían según tu
+          ubicación.
+          Al finalizar tu compra, podrás seleccionar la opción que prefieras y ver el tiempo estimado de entrega.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer cargado dinámicamente -->
+  <div id="footer"></div>
+
+  <!-- Script para cargar header y footer -->
+  <script src="script.js"></script>
+</body>
+
+</html>

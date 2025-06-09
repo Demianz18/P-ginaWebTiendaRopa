@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Vibe - Inicio</title>
+  <link rel="icon" href="/Urban_Vibe/img/favicon.png" type="image/png">
+  <!-- Fuente Raleway -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <!-- Script para insertar header y footer -->
+  <script defer src="script.js"></script>
+  <style>
+    /* Aquí puedes poner estilos generales si deseas mantenerlos en línea */
+  </style>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main>
+    <!-- Imagen principal de temporada -->
+    <div class="text-center position-relative" style="font-family: 'Playfair Display', serif;">
+      <img src="../Urban_Vibe/img/tienda.jpg" class="img-fluid" alt="Urban Vibe"
+        style="width: 100%; height: 800px; object-fit: cover; object-position: center 20%; margin-top: 90px;">
+      <!-- Capa negra opaca encima de la imagen -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);">
+      </div>
+
+      <div style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: rgba(255, 255, 255, 0.6);
+          padding: 40px 150px;
+          text-align: center;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+        <h2 style="
+          font-weight: 700;
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 55px;
+          color: #303132;
+          margin-bottom: 20px;">OTOÑO &<br>INVIERNO
+        </h2>
+        <a href="../Urban_Vibe/tienda.html" style="
+          display: inline-block;
+          font-family: 'Raleway', sans-serif;
+          padding: 12px 35px;
+          background-color: #303132;
+          color: white;
+          text-decoration: none;
+          border-radius: 0;
+          font-weight: lighter;">Comprar
+        </a>
+      </div>
+    </div>
+
+    <!-- Texto de envío gratuito -->
+    <div
+      style="background-color: #e0e0e0; text-align: center; padding: 13px; font-weight: lighter; letter-spacing: 3.9px; font-family: 'Raleway', serif;">
+      ENVÍOS GRATIS A ZONAS SELECCIONADAS
+    </div>
+
+    <!-- Sección de video tutorial -->
+    <section style="padding: 50px; text-align: center; background-color: #f9f9f9;">
+      <h2 style="font-family: 'Times New Roman', serif; font-weight: bold; font-size: 32px; letter-spacing: 8px; color: #303132;">
+        CÓMO USAR NUESTRA PÁGINA
+      </h2>
+      <hr style="width: 50px; height: 2px; background-color: black; border: none; margin: 20px auto;">
+      <p style="color: #555; font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: lighter; letter-spacing: 0.2em;">
+        Un vistazo rápido para sacarle el máximo provecho
+      </p>
+      <div style="margin-top: 30px;">
+        <img src="img/tutorial.jpg" alt="Video tutorial de la página"
+          style="max-width: 90%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      </div>
+    </section>
+
+    <!-- Sección de productos destacados -->
+    <section style="padding: 50px; text-align: center;">
+      <h2 style="font-family:'Times New Roman', Times, serif; font-weight: bold; font-size: 36px; letter-spacing: 10.8px; color: #303132;">
+        TODO EL AÑO
+      </h2>
+      <hr style="width: 50px; height: 2px; background-color: black; border: none; margin: 20px auto;" />
+      <p style="color: #555; font-family:'Raleway', sans-serif; font-size:17px; font-weight:lighter; letter-spacing:0.3em;">
+        Los infaltables
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+        <!-- Estilos para productos -->
+        <style>
+          .producto-enlace {
+            display: block;
+            width: 400px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+          }
+
+          .producto-enlace:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+          }
+
+          .producto-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+          }
+
+          .producto-label {
+            background-color: #303132;
+            color: white;
+            text-align: center;
+            padding: 8px 16px;
+            font-family: 'Raleway', serif;
+            font-size: 16px;
+          }
+
+          .oferta-contenedor {
+            position: relative;
+            width: 400px;
+            height: 380px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+          }
+
+          .oferta-contenedor:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+          }
+
+          .oferta-texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 55px;
+            font-weight: lighter;
+            font-family: 'Playfair Display', serif;
+            color: #303132;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+          }
+
+          .oferta-img {
+            width: 100%;
+            height: 110%;
+            border-radius: 10px;
+            display: block;
+          }
+        </style>
+
+        <!-- Polera Negra -->
+        <a href="detalle_tienda.html?id=1" class="producto-enlace">
+          <img src="../Urban_Vibe/img/1.jpg" alt="Polera Negra" class="producto-img" />
+          <div class="producto-label">Polera Negra</div>
+        </a>
+
+        <!-- Oferta -->
+        <a href="detalle_tienda.html?id=5" class="oferta-contenedor">
+          <img src="../Urban_Vibe/img/5.jpg" alt="Polo de algodón" class="oferta-img" />
+          <div class="oferta-texto">OFERTA</div>
+        </a>
+
+        <!-- Casaca Urbana -->
+        <a href="detalle_tienda.html?id=6" class="producto-enlace">
+          <img src="../Urban_Vibe/img/6.jpg" alt="Casaca Urbana" class="producto-img" />
+          <div class="producto-label">Casaca Urbana</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+<body>
+  <div id="header"></div>
+  <link rel="icon" href="img/favicon.png" type="image/png">
+
+  <main>
+    <!-- Contenido de esta sección -->
+  </main>
+
+  <!-- <div id="footer"></div>-->
+
+  <script src="script.js"></script>
+</body>

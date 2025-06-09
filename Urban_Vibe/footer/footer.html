@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Footer</title>
+    <style>
+        /* Ámbito de pie de página */
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        footer {
+            background-color: #2d2d2d;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .footer-contenido {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-columna {
+            flex: 2;
+            min-width: 250px;
+            margin: 20px;
+        }
+
+        .footer-columna h4 {
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-icons i {
+            margin-right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .social-icons img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .footer-form input[type="email"],
+        .footer-form input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #dfdfdf;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .footer-form input[type="email"] {
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            width: 290px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .footer-form input[type="submit"] {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .footer-form input[type="submit"]:hover {
+            background-color: #e0e0e0;
+        }
+
+        .footer-bottom {
+            padding: 10px;
+            border: none;
+        }
+
+        .footer-bottom a {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #111;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ayuda {
+            margin-top: 30px;
+        }
+
+        .ayuda h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="footer-contenido">
+            <div class="footer-columna">
+                <h6>Sigue conectado</h6>
+                <div class="social-icons">
+                    <img src="/Urban_Vibe/img/facebook.png" alt="facebook">
+                    <img src="/Urban_Vibe/img/twitter.png" alt="twitter">
+                    <img src="/Urban_Vibe/img/pinterest.png" alt="pinterest">
+                    <img src="/Urban_Vibe/img/instagram.png" alt="instagram">
+                </div>
+            </div>
+
+            <div class="footer-columna">
+                <h6>Escríbenos</h6>
+                <form class="footer-form">
+                    <input type="email" placeholder="Ingresa tu email aquí" required>
+                    <input type="submit" value="Unirse">
+                </form>
+            </div>
+
+            <div class="footer-columna">
+                <h6>¿Necesitas ayuda?</h6>
+                <p>914-123-456<br>info@urbanvibe.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <a>© 2025 hecho para Urban Vibe.</a>
+        </div>
+    </footer>
+</body>
+</html>

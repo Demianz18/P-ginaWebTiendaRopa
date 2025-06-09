@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            padding-top: 100px;
+            /* Ajusta este valor según la altura del navbar */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <main>
+        <div class="container mt-5 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-12 d-flex flex-wrap shadow p-4 bg-white rounded">
+                    <div class="col-md-6 text-center mb-4 mb-md-0">
+                        <img id="producto-img" src="" class="img-fluid rounded shadow-sm" style="max-width: 100%;"
+                            alt="Producto">
+                    </div>
+                    <div class="col-md-6 px-5">
+                        <h2 id="producto-nombre" class="fw-bold mb-3" style="font-size: 2rem;"></h2>
+                        <p id="producto-precio" class="fs-5 mb-3"></p>
+                        <div class="mb-3">
+                            <p><strong>Descripción:</strong> <span id="producto-desc"></span></p>
+                            <p><strong>Marca:</strong> <span id="producto-marca"></span></p>
+                            <p><strong>Color:</strong> <span id="producto-color"></span></p>
+                            <p><strong>Garantía:</strong> <span id="producto-garantia"></span> meses</p>
+                            <p><strong>Stock disponible:</strong> <span id="producto-stock"></span> unidades</p>
+                            <p><strong>Detalles:</strong> <span id="producto-caracteristicas"></span></p>
+                        </div>
+                        <div class="d-flex gap-3 mt-4">
+                            <button class="btn btn-dark px-4" onclick="volverALista()">← Volver a la lista</button>
+                            <button class="btn btn-success px-4" onclick="agregarAlCarrito(id)">🛒 Agregar al
+                                carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- PIE DE PAGINA -->
+    <div id="footer"></div>
+
+    <!-- Script para funcionalidad -->
+    <script>
+        // Array de productos
+        const productos = [
+            {
+                IdProducto: 1,
+                nombre: 'Polera Negra',
+                precio: 89.90,
+                precioAnterior: 119.90,
+                descripcion: 'Polera de algodón con capucha y bolsillos delanteros.',
+                marca: 'Urban Style',
+                color: 'Negro',
+                garantia: 3,
+                stock: 25,
+                caracteristicas: 'Diseño casual, interior afelpado, resistente al lavado.'
+            },
+            {
+                IdProducto: 2,
+                nombre: 'Camiseta Blanca',
+                precio: 49.90,
+                precioAnterior: 69.90,
+                descripcion: 'Camiseta básica blanca, cuello redondo.',
+                marca: 'Essential Wear',
+                color: 'Blanco',
+                garantia: 3,
+                stock: 30,
+                caracteristicas: 'Algodón 100%, costuras reforzadas, transpirable.'
+            },
+            {
+                IdProducto: 3,
+                nombre: 'Camisa de Jean',
+                precio: 149.90,
+                descripcion: 'Camisa de mezclilla de manga larga.',
+                marca: 'Denim Co.',
+                color: 'Azul',
+                garantia: 3,
+                stock: 15,
+                caracteristicas: 'Corte clásico, botones metálicos, resistente.'
+            },
+            {
+                IdProducto: 4,
+                nombre: 'Camisa Oxford',
+                precio: 129.90,
+                descripcion: 'Camisa formal Oxford de manga larga.',
+                marca: 'Oxford Club',
+                color: 'Celeste',
+                garantia: 3,
+                stock: 20,
+                caracteristicas: 'Tejido Oxford, ideal para oficina, fácil planchado.'
+            },
+            {
+                IdProducto: 5,
+                nombre: 'Polo de Algodón',
+                precio: 69.90,
+                descripcion: 'Polo casual con cuello tipo polo.',
+                marca: 'Comfort Line',
+                color: 'Gris',
+                garantia: 3,
+                stock: 35,
+                caracteristicas: 'Tela suave, botones en el cuello, estilo casual.'
+            },
+            {
+                IdProducto: 6,
+                nombre: 'Casaca Urbana',
+                precio: 179.90,
+                precioAnterior: 219.90,
+                descripcion: 'Casaca ligera ideal para entretiempo.',
+                marca: 'Urban Street',
+                color: 'Verde Oliva',
+                garantia: 3,
+                stock: 18,
+                caracteristicas: 'Bolsillos laterales, capucha ajustable, cierre frontal.',
+                destacado: true
+            },
+            {
+                IdProducto: 7,
+                nombre: 'Saco negro',
+                precio: 229.90,
+                descripcion: 'Saco formal con corte slim fit.',
+                marca: 'Elegance',
+                color: 'Negro',
+                garantia: 3,
+                stock: 12,
+                caracteristicas: 'Diseño entallado, forro interno, perfecto para eventos.'
+            },
+            {
+                IdProducto: 8,
+                nombre: 'Camisa Manga Corta',
+                precio: 99.90,
+                precioAnterior: 119.90,
+                descripcion: 'Camisa fresca de manga corta.',
+                marca: 'Verano Wear',
+                color: 'Celeste',
+                garantia: 3,
+                stock: 40,
+                caracteristicas: 'Tela ligera, botón clásico, ideal para climas cálidos.'
+            },
+            {
+                IdProducto: 9,
+                nombre: 'Camisa Casual',
+                precio: 109.90,
+                descripcion: 'Camisa casual ideal para uso diario.',
+                marca: 'Casual Fit',
+                color: 'Beige',
+                garantia: 3,
+                stock: 28,
+                caracteristicas: 'Estilo relajado, bolsillos frontales, tela suave.'
+            },
+            {
+                IdProducto: 10,
+                nombre: 'Chaqueta Denim',
+                precio: 149.90,
+                descripcion: 'Chaqueta denim clásica y resistente, perfecta para cualquier ocasión.',
+                marca: 'Denim Co',
+                color: 'Azul oscuro',
+                garantia: 3,
+                stock: 15,
+                caracteristicas: 'Tela denim premium, costuras reforzadas, corte moderno.',
+                precioAnterior: 189.90
+            },
+            {
+                IdProducto: 11,
+                nombre: 'Blusa Floral',
+                precio: 79.90,
+                precioAnterior: 99.90,
+                descripcion: 'Blusa ligera con estampado floral, ideal para primavera.',
+                marca: 'Florella',
+                color: 'Rosa',
+                garantia: 3,
+                stock: 22,
+                caracteristicas: 'Tela suave, mangas globo, corte holgado.'
+            },
+            {
+                IdProducto: 12,
+                nombre: 'Falda Plisada',
+                precio: 89.90,
+                descripcion: 'Falda midi plisada con cintura elástica.',
+                marca: 'Elegance Skirts',
+                color: 'Mostaza',
+                garantia: 3,
+                stock: 18,
+                caracteristicas: 'Tela ligera, caída fluida, ideal para ocasiones formales.'
+            },
+            {
+                IdProducto: 13,
+                nombre: 'Vestido Midi',
+                precio: 139.90,
+                precioAnterior: 169.90,
+                descripcion: 'Vestido midi sin mangas con escote en V.',
+                marca: 'Femme Chic',
+                color: 'Rojo vino',
+                garantia: 3,
+                stock: 10,
+                caracteristicas: 'Corte entallado, cierre invisible, tela elástica.'
+            },
+            {
+                IdProducto: 14,
+                nombre: 'Top de Encaje',
+                precio: 59.90,
+                descripcion: 'Top corto con detalles de encaje en el escote.',
+                marca: 'Romantic Style',
+                color: 'Blanco',
+                garantia: 3,
+                stock: 25,
+                caracteristicas: 'Encaje delicado, tirantes ajustables, estilo elegante.'
+            },
+            {
+                IdProducto: 15,
+                nombre: 'Pantalón Palazzo',
+                precio: 119.90,
+                descripcion: 'Pantalón palazzo de tiro alto, ideal para oficina o salidas.',
+                marca: 'Soft Line',
+                color: 'Negro',
+                garantia: 3,
+                stock: 17,
+                caracteristicas: 'Cintura elástica, corte amplio, tela fluida.'
+            },
+            {
+                IdProducto: 16,
+                nombre: 'Falda-Short de Jean Mujer',
+                precio: 69.90,
+                descripcion: 'Falda-Short de mezclilla con ruedo doblado.',
+                marca: 'Denim Love',
+                color: 'Azul claro',
+                garantia: 3,
+                stock: 30,
+                caracteristicas: 'Tiro medio, bolsillos funcionales, denim suave.'
+            },
+            {
+                IdProducto: 17,
+                nombre: 'Casaca Oversize Mujer',
+                precio: 199.90,
+                precioAnterior: 239.90,
+                descripcion: 'Casaca estilo oversize con capucha y forro interior.',
+                marca: 'Urban Girl',
+                color: 'Gris claro',
+                garantia: 3,
+                stock: 14,
+                caracteristicas: 'Estilo moderno, abrigadora, bolsillos laterales.'
+            },
+            {
+                IdProducto: 18,
+                nombre: 'Blazer Femenino',
+                precio: 159.90,
+                descripcion: 'Blazer entallado ideal para ocasiones formales o de oficina.',
+                marca: 'Formal Line',
+                color: 'Azul marino',
+                garantia: 3,
+                stock: 12,
+                caracteristicas: 'Corte estructurado, forrado, botones metálicos.'
+            },
+            {
+                IdProducto: 19,
+                nombre: 'Jogger Deportivo Mujer',
+                precio: 89.90,
+                descripcion: 'Pantalón jogger con cintura elástica y puños en tobillos.',
+                marca: 'Active Wear',
+                color: 'Negro',
+                garantia: 3,
+                stock: 20,
+                caracteristicas: 'Tela flexible, bolsillos laterales, cómodo para entrenar.'
+            },
+            {
+                IdProducto: 20,
+                nombre: 'Enterizo Casual',
+                precio: 149.90,
+                descripcion: 'Enterizo de manga corta con cinturón ajustable.',
+                marca: 'Urban Femme',
+                color: 'Verde militar',
+                garantia: 3,
+                stock: 16,
+                caracteristicas: 'Botones frontales, tela liviana, estilo relajado.'
+            },
+            {
+                IdProducto: 21,
+                nombre: 'Pantalón Chino Hombre',
+                precio: 119.90,
+                descripcion: 'Pantalón chino clásico, ideal para oficina o uso casual.',
+                marca: 'Menswear Co.',
+                color: 'Beige',
+                garantia: 3,
+                stock: 24,
+                caracteristicas: 'Corte recto, bolsillos laterales, tela resistente.'
+            },
+            {
+                IdProducto: 22,
+                nombre: 'Polera con Capucha',
+                precio: 99.90,
+                precioAnterior: 129.90,
+                descripcion: 'Polera gruesa con capucha ajustable y bolsillo canguro.',
+                marca: 'Street Active',
+                color: 'Gris oscuro',
+                garantia: 3,
+                stock: 28,
+                caracteristicas: 'Interior afelpado, capucha forrada, puños elásticos.'
+            },
+            {
+                IdProducto: 23,
+                nombre: 'Pantalón Jogger Hombre',
+                precio: 89.90,
+                descripcion: 'Jogger casual con cordón ajustable y bolsillos laterales.',
+                marca: 'Urban Man',
+                color: 'Negro',
+                garantia: 3,
+                stock: 22,
+                caracteristicas: 'Tejido suave, tobillo con elástico, estilo urbano.'
+            },
+            {
+                IdProducto: 24,
+                nombre: 'Camiseta Estampada',
+                precio: 59.90,
+                descripcion: 'Camiseta de algodón con diseño gráfico frontal.',
+                marca: 'Graphic Tees',
+                color: 'Blanca con estampado',
+                garantia: 3,
+                stock: 30,
+                caracteristicas: 'Estampado de alta calidad, cuello redondo, ajuste regular.'
+            },
+            {
+                IdProducto: 25,
+                nombre: 'Casaca Bomber Hombre',
+                precio: 189.90,
+                descripcion: 'Casaca bomber con cierre frontal y cuello tejido.',
+                marca: 'Flight Wear',
+                color: 'Verde oscuro',
+                garantia: 3,
+                stock: 13,
+                caracteristicas: 'Estilo moderno, resistente al viento, forro interior.'
+            },
+            {
+                IdProducto: 26,
+                nombre: 'Camisa Slim Fit',
+                precio: 119.90,
+                descripcion: 'Camisa ajustada ideal para ocasiones formales.',
+                marca: 'Executive Look',
+                color: 'Celeste',
+                garantia: 3,
+                stock: 19,
+                caracteristicas: 'Corte slim, cuello clásico, botones ocultos.'
+            },
+            {
+                IdProducto: 27,
+                nombre: 'Polo Básico Hombre',
+                precio: 39.90,
+                descripcion: 'Polo básico de algodón, ideal para uso diario.',
+                marca: 'Daily Wear',
+                color: 'Negro',
+                garantia: 3,
+                stock: 40,
+                caracteristicas: 'Transpirable, cuello reforzado, ajuste regular.'
+            },
+            {
+                IdProducto: 28,
+                nombre: 'Short Cargo Hombre',
+                precio: 79.90,
+                descripcion: 'Short con bolsillos grandes y ajuste cómodo.',
+                marca: 'Outdoor Gear',
+                color: 'Caqui',
+                garantia: 3,
+                stock: 26,
+                caracteristicas: 'Tiro medio, múltiples bolsillos, tela resistente.'
+            },
+            {
+                IdProducto: 29,
+                nombre: 'Chaleco Acolchado',
+                precio: 139.90,
+                descripcion: 'Chaleco acolchado sin mangas con cierre y cuello alto.',
+                marca: 'Winter Fit',
+                color: 'Negro',
+                garantia: 3,
+                stock: 12,
+                caracteristicas: 'Ligero pero abrigador, bolsillos con cierre, resistente al agua.'
+            },
+            {
+                IdProducto: 30,
+                nombre: 'Casaca Impermeable',
+                precio: 159.90,
+                precioAnterior: 199.90,
+                descripcion: 'Casaca impermeable con capucha y costuras selladas.',
+                marca: 'Rain Safe',
+                color: 'Azul marino',
+                garantia: 3,
+                stock: 14,
+                caracteristicas: 'Impermeable, capucha desmontable, cierres sellados.'
+            }
+        ];
+
+        // Obtener el ID del producto desde la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = parseInt(urlParams.get('id'), 10);
+
+        // Buscar el producto
+        const productoSeleccionado = productos.find(p => p.IdProducto === id);
+
+        // Renderizar el producto
+        const container = document.querySelector('#producto-detalle .card-body');
+
+        
+        if (productoSeleccionado) {
+            document.getElementById('producto-img').src = `/Urban_Vibe/img/${productoSeleccionado.IdProducto}.jpg`;
+            document.getElementById('producto-img').alt = productoSeleccionado.nombre;
+            document.getElementById('producto-nombre').textContent = productoSeleccionado.nombre;
+
+            document.getElementById('producto-precio').innerHTML = `
+        ${productoSeleccionado.precioAnterior ? `
+            <span style="text-decoration: line-through; color: #888;">S/ ${productoSeleccionado.precioAnterior}</span>
+        ` : ''}
+        <span style="color: #d32f2f; font-weight: bold;">S/ ${productoSeleccionado.precio}</span>
+    `;
+
+            document.getElementById('producto-desc').textContent = productoSeleccionado.descripcion;
+            document.getElementById('producto-marca').textContent = productoSeleccionado.marca;
+            document.getElementById('producto-color').textContent = productoSeleccionado.color;
+            document.getElementById('producto-garantia').textContent = productoSeleccionado.garantia;
+            document.getElementById('producto-stock').textContent = productoSeleccionado.stock;
+            document.getElementById('producto-caracteristicas').textContent = productoSeleccionado.caracteristicas;
+        } else {
+            document.querySelector('#producto-detalle').innerHTML = `<p>Producto no encontrado.</p>`;
+        }
+
+
+        function volverALista() {
+            window.location.href = '/Urban_Vibe/tienda.html';
+        }
+
+        function agregarAlCarrito(idProducto) {
+            const producto = productos.find(p => p.IdProducto === idProducto);
+            if (producto) {
+                console.log('Producto agregado al carrito:', producto);
+                alert(`Se agregó "${producto.nombre}" al carrito.`);
+            }
+        }
+    </script>
+
+    <!-- Script para cargar header y footer -->
+    <script src="script.js"></script>
+</body>
+
+</html>
