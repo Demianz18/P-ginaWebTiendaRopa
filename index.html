@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-<style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Vibe - Inicio</title>
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <!-- Fuente Raleway -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <!-- Script para insertar header y footer -->
+  <script defer src="script.js"></script>
+
+  <!-- Animación de entrada -->
+  <style>
   html {
     background: #444444;
   }
 
   body {
-    background-Color: black
+    background-color: black;
+  }
+
+  main {
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 1s ease, filter 1s ease;
+  }
+
+  main.fade-in {
+    opacity: 1;
+    filter: blur(0);
   }
 
   .boton {
@@ -29,18 +52,13 @@
   }
 </style>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Vibe - Inicio</title>
-  <link rel="icon" href="img/favicon.png" type="image/png">
-  <!-- Fuente Raleway -->
-  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-  <!-- Script para insertar header y footer -->
-  <script defer src="script.js"></script>
-  <style>
-    /* Aquí puedes poner estilos generales si deseas mantenerlos en línea */
-  </style>
+
+ <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('main').classList.add('fade-in');
+  });
+</script>
+
 </head>
 
 <body>

@@ -14,6 +14,72 @@
       padding-top: 60px;
       /* Ajusta este valor según la altura del navbar */
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      animation: fadeIn 0.8s ease-out;
+    }
+    .mision-vision {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.columna {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  flex: 1 1 400px;
+  padding: 30px;
+  max-width: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease;
+}
+
+.columna:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.columna img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.columna h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: #000;
+}
+
+.columna p {
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: justify;
+  color: #333;
+}
+
   </style>
 </head>
 
@@ -74,8 +140,10 @@
   </section>
 
   <br><br>
+  <!-- Espacio para separar del footer --> 
+    <div style="margin-top: 30px; border-top: 1px solid #ccc; width: 80%; margin-left: auto; margin-right: auto;"></div>
 
-  <!-- PIE DE PAGINA -->
+    <!-- PIE DE PAGINA -->
   <div id="footer"></div>
 
   <!-- script para llamar header y footer -->

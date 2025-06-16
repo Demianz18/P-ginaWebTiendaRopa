@@ -142,6 +142,22 @@
     button.submit-btn:hover {
       background-color: #000;
     }
+    @keyframes zoomFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.container-login {
+  animation: zoomFadeIn 0.6s ease-out;
+}
+
+    
   </style>
 </head>
 
@@ -149,6 +165,8 @@
 
   <!-- HEADER -->
   <div id="header"></div>
+
+  
 
   <!-- LOGIN/REGISTRO -->
   <main class="container-login" role="main">
@@ -218,27 +236,6 @@
 
   <!-- PIE DE PAGINA -->
   <div id="footer"></div>
-
-  <!-- Script de pestañas -->
-  <!--<script>
-    const tabs = document.querySelectorAll('[role="tab"]');
-    const panels = document.querySelectorAll('[role="tabpanel"]');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => {
-          t.setAttribute('aria-selected', 'false');
-          t.setAttribute('tabindex', '-1');
-        });
-        panels.forEach(panel => panel.classList.remove('active'));
-
-        tab.setAttribute('aria-selected', 'true');
-        tab.setAttribute('tabindex', '0');
-        document.getElementById(tab.getAttribute('aria-controls')).classList.add('active');
-        tab.focus();
-      });
-    });
-  </script>-->
 
   <!-- Script para cargar header y footer -->
   <script src="script.js"></script>

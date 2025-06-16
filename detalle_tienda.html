@@ -10,7 +10,41 @@
         body {
             font-family: 'Raleway', sans-serif;
             padding-top: 100px;
-            /* Ajusta este valor según la altura del navbar */
+        }
+
+        /* EFECTOS SOLO PARA EL CONTENIDO */
+        #detalle-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .flash {
+            background: white;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .flash.fade-out {
+            opacity: 0;
+        }
+
+        .blur {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out;
+        }
+
+        .blur.fade-out {
+            opacity: 0;
+            backdrop-filter: blur(0);
         }
     </style>
 </head>
@@ -19,28 +53,33 @@
     <div id="header"></div>
 
     <main>
-        <div class="container mt-5 mb-5">
-            <div class="row justify-content-center">
-                <div class="col-md-12 d-flex flex-wrap shadow p-4 bg-white rounded">
-                    <div class="col-md-6 text-center mb-4 mb-md-0">
-                        <img id="producto-img" src="" class="img-fluid rounded shadow-sm" style="max-width: 100%;"
-                            alt="Producto">
-                    </div>
-                    <div class="col-md-6 px-5">
-                        <h2 id="producto-nombre" class="fw-bold mb-3" style="font-size: 2rem;"></h2>
-                        <p id="producto-precio" class="fs-5 mb-3"></p>
-                        <div class="mb-3">
-                            <p><strong>Descripción:</strong> <span id="producto-desc"></span></p>
-                            <p><strong>Marca:</strong> <span id="producto-marca"></span></p>
-                            <p><strong>Color:</strong> <span id="producto-color"></span></p>
-                            <p><strong>Garantía:</strong> <span id="producto-garantia"></span> meses</p>
-                            <p><strong>Stock disponible:</strong> <span id="producto-stock"></span> unidades</p>
-                            <p><strong>Detalles:</strong> <span id="producto-caracteristicas"></span></p>
+        <div id="detalle-container">
+            <!-- EFECTOS -->
+            <div class="overlay flash"></div>
+            <div class="overlay blur"></div>
+
+            <!-- CONTENIDO DEL DETALLE -->
+            <div class="container mt-5 mb-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 d-flex flex-wrap shadow p-4 bg-white rounded">
+                        <div class="col-md-6 text-center mb-4 mb-md-0">
+                            <img id="producto-img" src="" class="img-fluid rounded shadow-sm" style="max-width: 100%;" alt="Producto">
                         </div>
-                        <div class="d-flex gap-3 mt-4">
-                            <button class="btn btn-dark px-4" onclick="volverALista()">← Volver a la lista</button>
-                            <button class="btn btn-success px-4" onclick="agregarAlCarrito(id)">🛒 Agregar al
-                                carrito</button>
+                        <div class="col-md-6 px-5">
+                            <h2 id="producto-nombre" class="fw-bold mb-3" style="font-size: 2rem;"></h2>
+                            <p id="producto-precio" class="fs-5 mb-3"></p>
+                            <div class="mb-3">
+                                <p><strong>Descripción:</strong> <span id="producto-desc"></span></p>
+                                <p><strong>Marca:</strong> <span id="producto-marca"></span></p>
+                                <p><strong>Color:</strong> <span id="producto-color"></span></p>
+                                <p><strong>Garantía:</strong> <span id="producto-garantia"></span> meses</p>
+                                <p><strong>Stock disponible:</strong> <span id="producto-stock"></span> unidades</p>
+                                <p><strong>Detalles:</strong> <span id="producto-caracteristicas"></span></p>
+                            </div>
+                            <div class="d-flex gap-3 mt-4">
+                                <button class="btn btn-dark px-4" onclick="volverALista()">← Volver a la lista</button>
+                                <button class="btn btn-success px-4" onclick="agregarAlCarrito(id)">🛒 Agregar al carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,9 +87,6 @@
         </div>
     </main>
 
-
-
-    <!-- PIE DE PAGINA -->
     <div id="footer"></div>
 
     <!-- Script para funcionalidad -->
@@ -400,16 +436,9 @@
             }
         ];
 
-        // Obtener el ID del producto desde la URL
         const urlParams = new URLSearchParams(window.location.search);
         const id = parseInt(urlParams.get('id'), 10);
-
-        // Buscar el producto
         const productoSeleccionado = productos.find(p => p.IdProducto === id);
-
-        // Renderizar el producto
-        const container = document.querySelector('#producto-detalle .card-body');
-
 
         if (productoSeleccionado) {
             document.getElementById('producto-img').src = `img/${productoSeleccionado.IdProducto}.jpg`;
@@ -417,11 +446,11 @@
             document.getElementById('producto-nombre').textContent = productoSeleccionado.nombre;
 
             document.getElementById('producto-precio').innerHTML = `
-        ${productoSeleccionado.precioAnterior ? `
-            <span style="text-decoration: line-through; color: #888;">S/ ${productoSeleccionado.precioAnterior}</span>
-        ` : ''}
-        <span style="color: #d32f2f; font-weight: bold;">S/ ${productoSeleccionado.precio}</span>
-    `;
+                ${productoSeleccionado.precioAnterior ? `
+                    <span style="text-decoration: line-through; color: #888;">S/ ${productoSeleccionado.precioAnterior}</span>
+                ` : ''}
+                <span style="color: #d32f2f; font-weight: bold;">S/ ${productoSeleccionado.precio}</span>
+            `;
 
             document.getElementById('producto-desc').textContent = productoSeleccionado.descripcion;
             document.getElementById('producto-marca').textContent = productoSeleccionado.marca;
@@ -430,9 +459,8 @@
             document.getElementById('producto-stock').textContent = productoSeleccionado.stock;
             document.getElementById('producto-caracteristicas').textContent = productoSeleccionado.caracteristicas;
         } else {
-            document.querySelector('#producto-detalle').innerHTML = `<p>Producto no encontrado.</p>`;
+            document.querySelector('#detalle-container').innerHTML = `<p>Producto no encontrado.</p>`;
         }
-
 
         function volverALista() {
             window.location.href = '/tienda.html';
@@ -447,7 +475,22 @@
         }
     </script>
 
-    <!-- Script para cargar header y footer -->
+    <!-- EFECTO DE ENTRADA -->
+    <script>
+        window.addEventListener('load', () => {
+            const flash = document.querySelector('.flash');
+            const blur = document.querySelector('.blur');
+
+            // Apagar efectos progresivamente
+            setTimeout(() => flash.classList.add('fade-out'), 100);
+            setTimeout(() => flash.remove(), 500);
+
+            setTimeout(() => blur.classList.add('fade-out'), 200);
+            setTimeout(() => blur.remove(), 700);
+        });
+    </script>
+
+    <!-- Cargar header y footer -->
     <script src="script.js"></script>
 </body>
 

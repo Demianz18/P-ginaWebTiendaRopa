@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem('userEmail', usuario.email);
 
     // Redirigir a la pantalla principal
-    window.location.href = "inicio.html";
+    window.location.href = "/index.html";
     } else {
       alert("Correo o contraseña incorrectos");
     }
