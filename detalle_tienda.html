@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <title>Detalle del Producto con Carrito</title>
     <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -255,14 +258,44 @@
 </head>
 
 <body>
+    <!-- CARGAR HEADER -->
     <div id="header"></div>
+
+    <!-- Carrito fijo en la esquina superior derecha, siempre visible -->
+    <div class="position-fixed" style="top: 27px; right: 45px; z-index: 1050;">
+        <a href="#" class="position-relative text-decoration-none" data-bs-toggle="offcanvas"
+            data-bs-target="#carritoOffcanvas">
+            <i class="bi bi-bag-fill text-white fs-4"></i>
+            <span id="cart-count" class="position-absolute start-100 badge rounded-pill bg-danger"
+                style="top: -6px; transform: translate(-45%, -46%);">
+                0
+            </span>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carritoBtn = document.querySelector('.position-fixed');
+            const offcanvasEl = document.getElementById('carritoOffcanvas');
+
+            if (carritoBtn && offcanvasEl) {
+                offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+                    carritoBtn.classList.add('d-none');
+                });
+
+                offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
+                    carritoBtn.classList.remove('d-none');
+                });
+            }
+        });
+    </script>
 
 
     <!-- OFFCANVAS DEL CARRITO -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title">
-                <i class="fas fa-shopping-cart me-2"></i>
+                <i class="bi bi-bag-fill me-3"></i>
                 Mi Carrito de Compras
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
@@ -327,7 +360,6 @@
                                 </div>
                             </div>
 
-
                             <h2 id="producto-nombre" class="fw-bold mb-3" style="font-size: 2rem;"></h2>
                             <p id="producto-precio" class="fs-5 mb-3"></p>
                             <div class="mb-3">
@@ -356,8 +388,7 @@
 
     <div id="footer"></div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Script para funcionalidad -->
     <script>
@@ -708,13 +739,13 @@
 
 
         // SISTEMA DE CARRITO
-        let carrito = [];
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
         const urlParams = new URLSearchParams(window.location.search);
         //Para detalle_tienda
         const id = parseInt(urlParams.get('id'), 10);
         //Para off_canvas
-        window.idProductoActual = parseInt(urlParams.get('id'), 10);
+        window.idProductoActual = id;
         const productoSeleccionado = productos.find(p => p.IdProducto === id);
 
         // Cargar producto actual
@@ -724,11 +755,11 @@
             document.getElementById('producto-nombre').textContent = productoSeleccionado.nombre;
 
             document.getElementById('producto-precio').innerHTML = `
-                ${productoSeleccionado.precioAnterior ? `
-                    <span style="text-decoration: line-through; color: #888;">S/ ${productoSeleccionado.precioAnterior}</span>
-                ` : ''}
-                <span style="color: #d32f2f; font-weight: bold;">S/ ${productoSeleccionado.precio}</span>
-            `;
+        ${productoSeleccionado.precioAnterior ? `
+            <span style="text-decoration: line-through; color: #888;">S/ ${productoSeleccionado.precioAnterior}</span>
+        ` : ''}
+        <span style="color: #d32f2f; font-weight: bold;">S/ ${productoSeleccionado.precio}</span>
+    `;
 
             document.getElementById('producto-desc').textContent = productoSeleccionado.descripcion;
             document.getElementById('producto-marca').textContent = productoSeleccionado.marca;
@@ -792,6 +823,7 @@
         }
 
         function actualizarCarrito() {
+
             const cartItemsContainer = document.getElementById('cart-items');
             const cartCount = document.getElementById('cart-count');
             const cartSummary = document.getElementById('cart-summary');
@@ -802,55 +834,54 @@
 
             if (carrito.length === 0) {
                 cartItemsContainer.innerHTML = `
-                    <div class="empty-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <h5>Tu carrito está vacío</h5>
-                        <p>¡Agrega algunos productos para comenzar!</p>
-                    </div>
-                `;
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h5>Tu carrito está vacío</h5>
+                <p>¡Agrega algunos productos para comenzar!</p>
+            </div>
+        `;
                 cartSummary.style.display = 'none';
-                return;
-            }
-
-            // Mostrar items del carrito
-
-            cartItemsContainer.innerHTML = carrito.map(item => `
-                <div class="cart-item">
-                    <div class="row align-items-center">
-                        <div class="col-2 ps-4">
-                            <img src="img/${item.IdProducto}.jpg" alt="${item.nombre}" class="cart-item-image">
+            } else {
+                // Mostrar items del carrito
+                cartItemsContainer.innerHTML = carrito.map(item => `
+            <div class="cart-item">
+                <div class="row align-items-center">
+                    <div class="col-2 ps-4">
+                        <img src="img/${item.IdProducto}.jpg" alt="${item.nombre}" class="cart-item-image">
+                    </div>
+                    <div class="col-6">
+                        <div class="cart-item-details ps-5">
+                            <h6>${item.nombre}</h6>
+                            <p class="text-muted mb-1">${item.marca}</p>
+                            <p class="text-success fw-bold mb-0">S/ ${item.precio}</p>
                         </div>
-                        <div class="col-6">
-                            <div class="cart-item-details ps-5">
-                                <h6>${item.nombre}</h6>
-                                <p class="text-muted mb-1">${item.marca}</p>
-                                <p class="text-success fw-bold mb-0">S/ ${item.precio}</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="quantity-controls mb-2" style="transform: translateX(-10px);">
-                                <button class="quantity-btn" onclick="cambiarCantidad(${item.IdProducto}, ${item.cantidad - 1})" ${item.cantidad <= 1 ? 'disabled' : ''}>
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <span class="fw-bold">${item.cantidad}</span>
-                                <button class="quantity-btn" onclick="cambiarCantidad(${item.IdProducto}, ${item.cantidad + 1})" ${item.cantidad >= item.stock ? 'disabled' : ''}>
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <button class="remove-btn" onclick="eliminarDelCarrito(${item.IdProducto})">
-                                <i class="fas fa-trash"></i>
+                    </div>
+                    <div class="col-4">
+                        <div class="quantity-controls mb-2" style="transform: translateX(-10px);">
+                            <button class="quantity-btn" onclick="cambiarCantidad(${item.IdProducto}, ${item.cantidad - 1})" ${item.cantidad <= 1 ? 'disabled' : ''}>
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="fw-bold">${item.cantidad}</span>
+                            <button class="quantity-btn" onclick="cambiarCantidad(${item.IdProducto}, ${item.cantidad + 1})" ${item.cantidad >= item.stock ? 'disabled' : ''}>
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
+                        <button class="remove-btn" onclick="eliminarDelCarrito(${item.IdProducto})">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
-            `).join('');
+            </div>
+        `).join('');
 
-            // Calcular totales
-            const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            document.getElementById('cart-subtotal').textContent = `S/ ${subtotal.toFixed(2)}`;
-            document.getElementById('cart-total').textContent = `S/ ${subtotal.toFixed(2)}`;
+                const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+                document.getElementById('cart-subtotal').textContent = `S/ ${subtotal.toFixed(2)}`;
+                document.getElementById('cart-total').textContent = `S/ ${subtotal.toFixed(2)}`;
+                cartSummary.style.display = 'block';
+            }
 
-            cartSummary.style.display = 'block';
+            // Guardar en localStorage para persistencia
+            localStorage.setItem("carrito", JSON.stringify(carrito));
         }
 
         function vaciarCarrito() {
@@ -884,7 +915,7 @@
             const notification = document.createElement('div');
             notification.className = `alert alert-${tipo === 'success' ? 'success' : tipo === 'warning' ? 'warning' : 'info'} position-fixed`;
             notification.style.cssText = `
-                top: 20px;
+                top: 95px;
                 right: 20px;
                 z-index: 9999;
                 min-width: 300px;
@@ -944,6 +975,7 @@
             }
         }
 
+
         document.addEventListener("DOMContentLoaded", () => {
             const idParam = new URLSearchParams(window.location.search).get("id");
             const idActual = parseInt(idParam, 10);
@@ -952,6 +984,7 @@
             }
         });
     </script>
+
 
     <!-- EFECTO DE ENTRADA -->
     <script>
@@ -996,6 +1029,7 @@
 
     <!-- Cargar header y footer -->
     <script src="script.js"></script>
+
 </body>
 
 </html>

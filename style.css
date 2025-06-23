@@ -14,7 +14,7 @@ body {
 
 .intro-title {
   text-align: center;
-  font-family:'Monserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 50px;
   font-weight: 700;
   color: #303132;
@@ -81,69 +81,296 @@ body {
   letter-spacing: normal;
   line-height: 1.4em;
   padding: 50px;
-  max-width: 900px; /* ajusta según necesites */
-  width: 400%;       /* o un valor fijo como 600px */
-  margin: 0 auto;   /* centra horizontalmente */
+  max-width: 900px;
+  /* ajusta según necesites */
+  width: 400%;
+  /* o un valor fijo como 600px */
+  margin: 0 auto;
+  /* centra horizontalmente */
 }
 
 /* TODO EL ÁMBITO DE MISIÓN Y VISIÓN */
 
 /* Contenedor principal de Misión y Visión */
 .mision-vision {
-  display: flex; /* Organiza las columnas en fila */
-  flex-wrap: wrap; /* Permite que se ajusten en pantallas pequeñas */
-  justify-content: center; /* Centra horizontalmente */
-  gap: 40px; /* Espacio entre las columnas */
-  padding: 10px 20px; /* Espacio interior (arriba/abajo y laterales) */
-  max-width: 1200px; /* Ancho máximo del contenedor */
-  margin: 40px auto 0; /* 40px arriba, centrado horizontal, 0 abajo */
-  background: #fafafa; /* Color de fondo */
-  border-radius: 20px; /* Bordes redondeados */
+  display: flex;
+  /* Organiza las columnas en fila */
+  flex-wrap: wrap;
+  /* Permite que se ajusten en pantallas pequeñas */
+  justify-content: center;
+  /* Centra horizontalmente */
+  gap: 40px;
+  /* Espacio entre las columnas */
+  padding: 10px 20px;
+  /* Espacio interior (arriba/abajo y laterales) */
+  max-width: 1200px;
+  /* Ancho máximo del contenedor */
+  margin: 40px auto 0;
+  /* 40px arriba, centrado horizontal, 0 abajo */
+  background: #fafafa;
+  /* Color de fondo */
+  border-radius: 20px;
+  /* Bordes redondeados */
 }
 
 /* Columnas individuales (Misión y Visión) */
 .columna {
-  flex: 1 1 45%; /* Permite ajustar el ancho flexible (45% para dos columnas) */
-  background-color: white; /* Fondo blanco */
-  padding: 30px; /* Espaciado interior */
-  border-radius: 16px; /* Bordes redondeados */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Sombra suave */
-  text-align: center; /* Texto centrado */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación al pasar el cursor */
-  min-width: 400px; /* Ajuste mínimo para asegurar el mismo tamaño */
-  max-width: 500px; /* Ajuste máximo para mantener proporciones */
+  flex: 1 1 45%;
+  /* Permite ajustar el ancho flexible (45% para dos columnas) */
+  background-color: white;
+  /* Fondo blanco */
+  padding: 30px;
+  /* Espaciado interior */
+  border-radius: 16px;
+  /* Bordes redondeados */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  /* Sombra suave */
+  text-align: center;
+  /* Texto centrado */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Animación al pasar el cursor */
+  min-width: 400px;
+  /* Ajuste mínimo para asegurar el mismo tamaño */
+  max-width: 500px;
+  /* Ajuste máximo para mantener proporciones */
 }
 
 /* Efecto hover (cuando el cursor pasa por encima) */
 .columna:hover {
-  transform: translateY(-5px); /* Desplaza hacia arriba 5px */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12); /* Aumenta la sombra */
+  transform: translateY(-5px);
+  /* Desplaza hacia arriba 5px */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  /* Aumenta la sombra */
 }
 
 /* Imagen dentro de las columnas */
 .columna img {
-  max-width: 400px; /* Ancho máximo para no distorsionar */
-  margin-bottom: 20px; /* Espacio debajo de la imagen */
-  height: auto; /* Ajuste de altura automático */
-  display: block; /* Ocupa todo el ancho disponible */
-  margin: 0 auto 20px; /* Centra la imagen horizontalmente */
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)); /* Sombra de la imagen */
+  max-width: 400px;
+  /* Ancho máximo para no distorsionar */
+  margin-bottom: 20px;
+  /* Espacio debajo de la imagen */
+  height: auto;
+  /* Ajuste de altura automático */
+  display: block;
+  /* Ocupa todo el ancho disponible */
+  margin: 0 auto 20px;
+  /* Centra la imagen horizontalmente */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  /* Sombra de la imagen */
 }
 
 /* Título dentro de las columnas */
 .columna h2 {
-  font-size: 26px; /* Tamaño de fuente */
-  margin-bottom: 15px; /* Espacio debajo del título */
-  color: #222; /* Color del texto */
-  font-weight: 700; /* Negrita */
-  letter-spacing: 1px; /* Espaciado entre letras */
+  font-size: 26px;
+  /* Tamaño de fuente */
+  margin-bottom: 15px;
+  /* Espacio debajo del título */
+  color: #222;
+  /* Color del texto */
+  font-weight: 700;
+  /* Negrita */
+  letter-spacing: 1px;
+  /* Espaciado entre letras */
 }
 
 /* Párrafo dentro de las columnas */
 .columna p {
-  font-family: 'Raleway', sans-serif; /* Fuente externa */
-  text-align: justify; /* Texto justificado */
-  font-size: 16px; /* Tamaño de fuente */
-  color: #555; /* Color del texto */
-  line-height: 1.6; /* Espaciado entre líneas */
+  font-family: 'Raleway', sans-serif;
+  /* Fuente externa */
+  text-align: justify;
+  /* Texto justificado */
+  font-size: 16px;
+  /* Tamaño de fuente */
+  color: #555;
+  /* Color del texto */
+  line-height: 1.6;
+  /* Espaciado entre líneas */
+}
+
+/*--- Apartado de Carrito ---*/
+
+.cart-icon {
+  position: fixed;
+  top: 120px;
+  right: 30px;
+  z-index: 1000;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+  background: #333;
+  transform: scale(1.1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #dc3545;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.offcanvas-header {
+  background: #000;
+  color: white;
+}
+
+.offcanvas-title {
+  font-weight: bold;
+  color: white;
+}
+
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  transition: background-color 0.2s ease;
+}
+
+.cart-item:hover {
+  background-color: #f8f9fa;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details h6 {
+  margin: 0 0 5px 0;
+  font-weight: 600;
+}
+
+.cart-item-details .text-muted {
+  font-size: 0.9em;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.quantity-btn:hover {
+  background: #555;
+}
+
+.quantity-btn:disabled {
+  background: #dee2e6;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.remove-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #c82333;
+}
+
+.cart-summary {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.cart-total {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #000;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.empty-cart i {
+  font-size: 3em;
+  margin-bottom: 15px;
+}
+
+.checkout-btn {
+  background: linear-gradient(135deg, #333, #555);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.checkout-btn:hover {
+  background: linear-gradient(135deg, #444, #666);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.animate-add {
+  animation: bounceIn 0.5s ease;
+}
+
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
