@@ -29,7 +29,6 @@
       line-height: 1.5;
       min-height: 100vh;
       padding-top: 120px;
-
     }
 
     .container-login {
@@ -41,6 +40,7 @@
       padding: 40px 32px 36px;
       margin: auto;
       margin-bottom: 80px;
+      animation: zoomFadeIn 0.6s ease-out;
     }
 
     .tab-header {
@@ -157,10 +157,6 @@
         transform: scale(1);
       }
     }
-
-    .container-login {
-      animation: zoomFadeIn 0.6s ease-out;
-    }
   </style>
 </head>
 
@@ -168,6 +164,83 @@
 
   <!-- HEADER -->
   <div id="header"></div>
+
+  <main class="container-login" role="main">
+    <nav class="tab-header" role="tablist" aria-label="Formulario de acceso">
+      <button id="tab-registrar" class="tab-button" role="tab" aria-selected="true" aria-controls="panel-registrar"
+        tabindex="0">Registrar</button>
+      <button id="tab-login" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-login"
+        tabindex="-1">Iniciar Sesión</button>
+    </nav>
+
+    <!-- REGISTRO -->
+    <form id="panel-registrar" role="tabpanel" aria-labelledby="tab-registrar" class="active" novalidate>
+      <div class="form-row">
+        <div>
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" required placeholder="Ej. Lucía"
+            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios" />
+        </div>
+        <div>
+          <label for="apellido">Apellido</label>
+          <input id="apellido" name="apellido" type="text" required placeholder="Ej. Ríos"
+            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label for="fechaNacimiento">Fecha de nacimiento</label>
+          <input id="fechaNacimiento" name="fechaNacimiento" type="date" required max="2025-12-30" />
+        </div>
+        <div>
+          <label>Sexo</label>
+          <div class="radio-group">
+            <label><input type="radio" name="sexo" value="Femenino" required /> Femenino</label>
+            <label><input type="radio" name="sexo" value="Masculino" required /> Masculino</label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="emailRegistro">Correo electrónico</label>
+        <input id="emailRegistro" name="emailRegistro" type="email" required placeholder="Ej. correo@ejemplo.com"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          title="Correo electrónico válido, ej: usuario@dominio.com" />
+      </div>
+
+      <div>
+        <label for="passwordRegistro">Contraseña</label>
+        <input id="passwordRegistro" name="passwordRegistro" type="password" required minlength="8"
+          placeholder="Mínimo 8 caracteres" title="Debe tener al menos 8 caracteres" />
+      </div>
+
+      <button type="submit" class="submit-btn">Registrarse</button>
+    </form>
+
+    <!-- LOGIN -->
+    <form id="panel-login" role="tabpanel" aria-labelledby="tab-login" novalidate>
+      <div>
+        <label for="emailLogin">Correo electrónico</label>
+        <input id="emailLogin" name="emailLogin" type="email" required placeholder="Ej. usuario@correo.com"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          title="Correo electrónico válido, ej: usuario@dominio.com" />
+      </div>
+
+      <div>
+        <label for="passwordLogin">Contraseña</label>
+        <input id="passwordLogin" name="passwordLogin" type="password" required minlength="8"
+          placeholder="Tu contraseña" title="Debe tener al menos 8 caracteres" />
+      </div>
+
+      <button type="submit" class="submit-btn">Iniciar sesión</button>
+
+      <div id="userProfile" class="text-center mt-4 d-none">
+        <img id="profilePic" class="rounded-circle mb-3" src="" alt="Foto de perfil" width="100">
+        <h5 id="userName"></h5>
+      </div>
+    </form>
+  </main>
 
   <!-- Carrito fijo en la esquina superior derecha, siempre visible -->
   <div class="position-fixed" style="top: 27px; right: 45px; z-index: 1050;">
@@ -239,74 +312,6 @@
     </div>
   </div>
 
-
-
-
-  <!-- LOGIN/REGISTRO -->
-  <main class="container-login" role="main">
-    <nav class="tab-header" role="tablist" aria-label="Formulario de acceso">
-      <button id="tab-registrar" class="tab-button" role="tab" aria-selected="true" aria-controls="panel-registrar"
-        tabindex="0">Registrar</button>
-      <button id="tab-login" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-login"
-        tabindex="-1">Iniciar Sesión</button>
-    </nav>
-
-    <form id="panel-registrar" role="tabpanel" aria-labelledby="tab-registrar" class="active" novalidate>
-      <div class="form-row">
-        <div>
-          <label for="nombre">Nombre</label>
-          <input id="nombre" name="nombre" type="text" required placeholder="Ej. Lucía" />
-        </div>
-        <div>
-          <label for="apellido">Apellido</label>
-          <input id="apellido" name="apellido" type="text" required placeholder="Ej. Ríos" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div>
-          <label for="fechaNacimiento">Fecha de nacimiento</label>
-          <input id="fechaNacimiento" name="fechaNacimiento" type="date" required max="2025-12-30" />
-        </div>
-        <div>
-          <label>Sexo</label>
-          <div class="radio-group">
-            <label><input type="radio" name="sexo" value="Femenino" required /> Femenino</label>
-            <label><input type="radio" name="sexo" value="Masculino" required /> Masculino</label>
-          </div>
-        </div>
-      </div>
-      <div>
-        <label for="emailRegistro">Correo electrónico</label>
-        <input id="emailRegistro" name="emailRegistro" type="email" required placeholder="Ej. correo@ejemplo.com" />
-      </div>
-      <div>
-        <label for="passwordRegistro">Contraseña</label>
-        <input id="passwordRegistro" name="passwordRegistro" type="password" required
-          placeholder="Mínimo 8 caracteres" />
-      </div>
-      <button type="submit" class="submit-btn">Registrarse</button>
-    </form>
-
-    <form id="panel-login" role="tabpanel" aria-labelledby="tab-login" novalidate>
-      <div>
-        <label for="emailLogin">Correo electrónico</label>
-        <input id="emailLogin" name="emailLogin" type="email" required placeholder="Ej. usuario@correo.com" />
-      </div>
-      <div>
-        <label for="passwordLogin">Contraseña</label>
-        <input id="passwordLogin" name="passwordLogin" type="password" required placeholder="Tu contraseña" />
-      </div>
-
-      <button type="submit" class="submit-btn">Iniciar sesión</button>
-      <div id="userProfile" class="text-center mt-4 d-none">
-        <img id="profilePic" class="rounded-circle mb-3" src="" alt="Foto de perfil" width="100">
-        <h5 id="userName"></h5>
-      </div>
-
-
-
-    </form>
-  </main>
 
   <!-- PIE DE PAGINA -->
   <div id="footer"></div>

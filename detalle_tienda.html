@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Detalle del Producto con Carrito</title>
+    <title>Detalle del Producto</title>
     <link rel="icon" href="img/favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <!-- Bootstrap JS -->
@@ -239,6 +239,7 @@
                 opacity: 1;
             }
         }
+        
 
         #btn-anterior,
         #btn-siguiente {
@@ -435,7 +436,7 @@
                 precio: 129.90,
                 descripcion: 'Camisa formal Oxford de manga larga.',
                 marca: 'Oxford Club',
-                color: 'Celeste',
+                color: 'Gris',
                 garantia: 3,
                 stock: 20,
                 caracteristicas: 'Tejido Oxford, ideal para oficina, fácil planchado.'
@@ -446,7 +447,7 @@
                 precio: 69.90,
                 descripcion: 'Polo casual con cuello tipo polo.',
                 marca: 'Comfort Line',
-                color: 'Gris',
+                color: 'Blanco',
                 garantia: 3,
                 stock: 35,
                 caracteristicas: 'Tela suave, botones en el cuello, estilo casual.'
@@ -458,7 +459,7 @@
                 precioAnterior: 219.90,
                 descripcion: 'Casaca ligera ideal para entretiempo.',
                 marca: 'Urban Street',
-                color: 'Verde Oliva',
+                color: 'Negro',
                 garantia: 3,
                 stock: 18,
                 caracteristicas: 'Bolsillos laterales, capucha ajustable, cierre frontal.',
@@ -482,7 +483,7 @@
                 precioAnterior: 119.90,
                 descripcion: 'Camisa fresca de manga corta.',
                 marca: 'Verano Wear',
-                color: 'Celeste',
+                color: 'Azul marino',
                 garantia: 3,
                 stock: 40,
                 caracteristicas: 'Tela ligera, botón clásico, ideal para climas cálidos.'
@@ -493,7 +494,7 @@
                 precio: 109.90,
                 descripcion: 'Camisa casual ideal para uso diario.',
                 marca: 'Casual Fit',
-                color: 'Beige',
+                color: 'Beige Oscuro',
                 garantia: 3,
                 stock: 28,
                 caracteristicas: 'Estilo relajado, bolsillos frontales, tela suave.'
@@ -504,7 +505,7 @@
                 precio: 149.90,
                 descripcion: 'Chaqueta denim clásica y resistente, perfecta para cualquier ocasión.',
                 marca: 'Denim Co',
-                color: 'Azul oscuro',
+                color: 'Azul',
                 garantia: 3,
                 stock: 15,
                 caracteristicas: 'Tela denim premium, costuras reforzadas, corte moderno.',
@@ -517,7 +518,7 @@
                 precioAnterior: 99.90,
                 descripcion: 'Blusa ligera con estampado floral, ideal para primavera.',
                 marca: 'Florella',
-                color: 'Rosa',
+                color: 'Beige Claro',
                 garantia: 3,
                 stock: 22,
                 caracteristicas: 'Tela suave, mangas globo, corte holgado.'
@@ -540,7 +541,7 @@
                 precioAnterior: 169.90,
                 descripcion: 'Vestido midi sin mangas con escote en V.',
                 marca: 'Femme Chic',
-                color: 'Rojo vino',
+                color: 'Negro',
                 garantia: 3,
                 stock: 10,
                 caracteristicas: 'Corte entallado, cierre invisible, tela elástica.'
@@ -551,7 +552,7 @@
                 precio: 59.90,
                 descripcion: 'Top corto con detalles de encaje en el escote.',
                 marca: 'Romantic Style',
-                color: 'Blanco',
+                color: 'Azul marino',
                 garantia: 3,
                 stock: 25,
                 caracteristicas: 'Encaje delicado, tirantes ajustables, estilo elegante.'
@@ -618,7 +619,7 @@
                 precio: 149.90,
                 descripcion: 'Enterizo de manga corta con cinturón ajustable.',
                 marca: 'Urban Femme',
-                color: 'Verde militar',
+                color: 'Verde',
                 garantia: 3,
                 stock: 16,
                 caracteristicas: 'Botones frontales, tela liviana, estilo relajado.'
@@ -641,7 +642,7 @@
                 precioAnterior: 129.90,
                 descripcion: 'Polera gruesa con capucha ajustable y bolsillo canguro.',
                 marca: 'Street Active',
-                color: 'Gris oscuro',
+                color: 'Gris claro',
                 garantia: 3,
                 stock: 28,
                 caracteristicas: 'Interior afelpado, capucha forrada, puños elásticos.'
@@ -663,7 +664,7 @@
                 precio: 59.90,
                 descripcion: 'Camiseta de algodón con diseño gráfico frontal.',
                 marca: 'Graphic Tees',
-                color: 'Blanca con estampado',
+                color: 'Blanco',
                 garantia: 3,
                 stock: 30,
                 caracteristicas: 'Estampado de alta calidad, cuello redondo, ajuste regular.'
@@ -674,7 +675,7 @@
                 precio: 189.90,
                 descripcion: 'Casaca bomber con cierre frontal y cuello tejido.',
                 marca: 'Flight Wear',
-                color: 'Verde oscuro',
+                color: 'Crudo',
                 garantia: 3,
                 stock: 13,
                 caracteristicas: 'Estilo moderno, resistente al viento, forro interior.'
@@ -685,7 +686,7 @@
                 precio: 119.90,
                 descripcion: 'Camisa ajustada ideal para ocasiones formales.',
                 marca: 'Executive Look',
-                color: 'Celeste',
+                color: 'Rosa Claro',
                 garantia: 3,
                 stock: 19,
                 caracteristicas: 'Corte slim, cuello clásico, botones ocultos.'
@@ -915,16 +916,15 @@
             const notification = document.createElement('div');
             notification.className = `alert alert-${tipo === 'success' ? 'success' : tipo === 'warning' ? 'warning' : 'info'} position-fixed`;
             notification.style.cssText = `
-                top: 95px;
-                right: 20px;
-                z-index: 9999;
+            top: 95px;
+            right: 20px;
+                z-index: 1040; /* detrás del offcanvas (z-index 1045) */
                 min-width: 300px;
                 animation: slideIn 0.3s ease;
             `;
             notification.innerHTML = `
-                <i class="fas fa-${tipo === 'success' ? 'check-circle' : tipo === 'warning' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
-                ${mensaje}
-            `;
+            <i class="fas fa-${tipo === 'success' ? 'check-circle' : tipo === 'warning' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
+            ${mensaje}`;
 
             document.body.appendChild(notification);
 
@@ -934,6 +934,7 @@
                 setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
+
 
         function volverALista() {
             window.location.href = '/tienda.html';
