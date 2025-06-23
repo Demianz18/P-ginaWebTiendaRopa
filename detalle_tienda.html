@@ -239,7 +239,7 @@
                 opacity: 1;
             }
         }
-        
+
 
         #btn-anterior,
         #btn-siguiente {
@@ -902,7 +902,13 @@
             }
 
             const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            alert(`Procediendo al pago por S/ ${total.toFixed(2)}\n\nEsta funcionalidad se implementará próximamente.`);
+            alert(`Procediendo al pago por S/ ${total.toFixed(2)}`);
+            
+            // Guardar total en localStorage (opcional, si deseas mostrar en pago.html)
+            localStorage.setItem('totalCompra', total.toFixed(2));
+
+            // Redirigir a la página de pago
+            window.location.href = 'pago.html';
         }
 
         function animarIconoCarrito() {

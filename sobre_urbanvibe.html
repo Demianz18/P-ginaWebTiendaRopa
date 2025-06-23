@@ -320,10 +320,18 @@
 
     function procederAlPago() {
       if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
+        mostrarNotificacion('Tu carrito está vacío', 'warning');
         return;
       }
-      alert("Función de pago en desarrollo.");
+
+      const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+      alert(`Procediendo al pago por S/ ${total.toFixed(2)}`);
+
+      // Guardar total en localStorage (opcional, si deseas mostrar en pago.html)
+      localStorage.setItem('totalCompra', total.toFixed(2));
+
+      // Redirigir a la página de pago
+      window.location.href = 'pago.html';
     }
 
     document.addEventListener("DOMContentLoaded", actualizarCarrito);
