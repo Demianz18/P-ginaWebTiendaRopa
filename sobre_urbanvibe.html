@@ -34,64 +34,14 @@
     section {
       animation: fadeIn 0.8s ease-out;
     }
-
-    .mision-vision {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      justify-content: center;
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .columna {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      flex: 1 1 400px;
-      padding: 30px;
-      max-width: 500px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeIn 1s ease;
-    }
-
-    .columna:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    .columna img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .columna h2 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 15px;
-      letter-spacing: 2px;
-      font-weight: 800;
-      color: #000;
-    }
-
-    .columna p {
-      font-size: 15px;
-      line-height: 1.7;
-      text-align: justify;
-      color: #333;
-    }
   </style>
 </head>
 
 <body>
   <div id="header"></div>
 
-  <!-- Carrito fijo en la esquina superior derecha, siempre visible -->
-  <div class="position-fixed" style="top: 27px; right: 45px; z-index: 1050;">
+   <!-- Carrito fijo en la esquina superior derecha con animación suave -->
+  <div id="carritoIcono" class="position-fixed animate-carrito" style="top: 27px; right: 45px; z-index: 1050;">
     <a href="#" class="position-relative text-decoration-none" data-bs-toggle="offcanvas"
       data-bs-target="#carritoOffcanvas">
       <i class="bi bi-bag-fill text-white fs-4"></i>
@@ -102,22 +52,6 @@
     </a>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const carritoBtn = document.querySelector('.position-fixed');
-      const offcanvasEl = document.getElementById('carritoOffcanvas');
-
-      if (carritoBtn && offcanvasEl) {
-        offcanvasEl.addEventListener('show.bs.offcanvas', function () {
-          carritoBtn.classList.add('d-none');
-        });
-
-        offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
-          carritoBtn.classList.remove('d-none');
-        });
-      }
-    });
-  </script>
 
 
   <!-- OFFCANVAS DEL CARRITO -->
@@ -170,13 +104,38 @@
       </h1>
 
       <div class="fade-in-up" style="max-width: 960px; margin: auto; padding: 20px;">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px;">
-          <iframe src="https://www.youtube.com/embed/LQaAIK1riwg"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            title="Video Discapacidad Auditiva">
-          </iframe>
+        <!-- CONTENEDOR DEL VIDEO ESTILO YOUTUBE -->
+        <div id="youtube-container" onclick="cargarVideoYouTube()"
+          style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background-color: #000; cursor: pointer;">
+          <!-- Miniatura del video -->
+          <img src="https://i.ytimg.com/vi/LQaAIK1riwg/maxresdefault.jpg" alt="Miniatura del video"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+
+          <!-- Botón de reproducción estilo YouTube -->
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;">
+            <svg width="80" height="80" viewBox="0 0 68 48" style="filter: drop-shadow(0 0 8px rgba(0,0,0,0.5));">
+              <path
+                d="M66.52 7.01a8.27 8.27 0 0 0-5.8-5.84C55.2 0 34 0 34 0S12.8 0 7.28 1.17a8.27 8.27 0 0 0-5.8 5.84A85.15 85.15 0 0 0 0 24a85.15 85.15 0 0 0 1.48 16.99 8.27 8.27 0 0 0 5.8 5.84C12.8 48 34 48 34 48s21.2 0 26.72-1.17a8.27 8.27 0 0 0 5.8-5.84A85.15 85.15 0 0 0 68 24a85.15 85.15 0 0 0-1.48-16.99z"
+                fill="#f00" />
+              <path d="M45 24 27 14v20z" fill="#fff" />
+            </svg>
+          </div>
         </div>
+
+        <!-- SCRIPT PARA CARGA DIFERIDA -->
+        <script>
+          function cargarVideoYouTube() {
+            const contenedor = document.getElementById("youtube-container");
+            contenedor.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/LQaAIK1riwg?autoplay=1"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px;"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              title="Video Discapacidad Auditiva"></iframe>
+    `;
+          }
+        </script>
+
         <p style="text-align: center; font-size: 1.2rem; margin-top: 15px;">
           Video sobre Discapacidad Auditiva
         </p>

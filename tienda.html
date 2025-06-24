@@ -17,7 +17,7 @@
     html {
       visibility: hidden;
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.3s ease;
     }
 
     html.loaded {
@@ -30,7 +30,7 @@
       min-height: 60px;
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
       background-size: 200% 100%;
-      animation: skeleton-loading 1.2s infinite;
+      animation: skeleton-loading 1.5s infinite;
       border-radius: 4px;
     }
 
@@ -54,7 +54,7 @@
     main {
       opacity: 0;
       transform: translateY(10px);
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
     }
 
     main.loaded {
@@ -167,6 +167,7 @@
 
 <body>
   <div id="header"></div>
+
   <!-- Carrito fijo en la esquina superior derecha, siempre visible -->
   <div class="position-fixed" style="top: 27px; right: 45px; z-index: 1050;">
     <a href="#" class="position-relative text-decoration-none" data-bs-toggle="offcanvas"
@@ -178,24 +179,6 @@
       </span>
     </a>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const carritoBtn = document.querySelector('.position-fixed');
-      const offcanvasEl = document.getElementById('carritoOffcanvas');
-
-      if (carritoBtn && offcanvasEl) {
-        offcanvasEl.addEventListener('show.bs.offcanvas', function () {
-          carritoBtn.classList.add('d-none');
-        });
-
-        offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
-          carritoBtn.classList.remove('d-none');
-        });
-      }
-    });
-  </script>
-
 
   <!-- OFFCANVAS DEL CARRITO -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas">
@@ -239,11 +222,30 @@
 
 
   <main>
+
     <div class="container text-center mt-5">
       <h2 class="mb-5 fs-4" style="letter-spacing: 8px; font-weight: bolder;">TIENDA</h2>
 
       <div class="container mb-4">
         <div class="filtros d-flex justify-content-center flex-wrap gap-3 p-3 rounded-4 shadow-sm filtro-estilo">
+          <!-- Agrega el nuevo filtro por categoría (dentro del div de filtros) -->
+          <div>
+            <label for="filtroCategoria" class="form-label fw-semibold text-secondary me-2">Categoría:</label>
+            <select id="filtroCategoria" class="form-select">
+              <option value="todas">Todas</option>
+              <option value="poleras">Poleras</option>
+              <option value="polos">Polos</option>
+              <option value="camisas">Camisas</option>
+              <option value="casacas">Casacas</option>
+              <option value="blusas">Blusas</option>
+              <option value="vestidos">Vestidos</option>
+              <option value="pantalones">Pantalones</option>
+              <option value="shorts">Shorts</option>
+              <option value="chalecos">Chalecos</option>
+              <option value="enterizos">Enterizos</option>
+              <option value="blazers">Blazers</option>
+            </select>
+          </div>
           <div>
             <label for="filtroGenero" class="form-label fw-semibold text-secondary me-2">Género:</label>
             <select id="filtroGenero" class="form-select">
@@ -381,45 +383,49 @@
 
   <script>
     const productos = [
-      { id: 1, nombre: 'Polera Negra', precio: 89.90, precioAnterior: 119.90, genero: 'hombre' },
-      { id: 2, nombre: 'Camiseta Blanca', precio: 49.90, precioAnterior: 69.90, genero: 'hombre' },
-      { id: 3, nombre: 'Camisa de Jean', precio: 149.90, genero: 'hombre' },
-      { id: 4, nombre: 'Camisa Oxford', precio: 129.90, genero: 'hombre' },
-      { id: 5, nombre: 'Polo de Algodón', precio: 69.90, genero: 'hombre' },
-      { id: 6, nombre: 'Casaca Urbana', precio: 179.90, precioAnterior: 219.90, destacado: true, genero: 'hombre' },
-      { id: 7, nombre: 'Saco negro', precio: 229.90, genero: 'hombre' },
-      { id: 8, nombre: 'Camisa Manga Corta', precio: 99.90, precioAnterior: 119.90, genero: 'hombre' },
-      { id: 9, nombre: 'Camisa Casual', precio: 109.90, genero: 'hombre' },
-      { id: 10, nombre: 'Chaqueta Denim', precio: 149.90, precioAnterior: 189.90, genero: 'hombre' },
-      { id: 11, nombre: 'Blusa Floral', precio: 79.90, precioAnterior: 99.90, genero: 'mujer' },
-      { id: 12, nombre: 'Falda Plisada', precio: 89.90, genero: 'mujer' },
-      { id: 13, nombre: 'Vestido Midi', precio: 139.90, precioAnterior: 169.90, genero: 'mujer' },
-      { id: 14, nombre: 'Top de Encaje', precio: 59.90, genero: 'mujer' },
-      { id: 15, nombre: 'Pantalón Palazzo', precio: 119.90, genero: 'mujer' },
-      { id: 16, nombre: 'Falda-Short de Jean Mujer', precio: 69.90, genero: 'mujer' },
-      { id: 17, nombre: 'Casaca Oversize Mujer', precio: 199.90, precioAnterior: 239.90, genero: 'mujer' },
-      { id: 18, nombre: 'Blazer Femenino', precio: 159.90, genero: 'mujer' },
-      { id: 19, nombre: 'Jogger Deportivo Mujer', precio: 89.90, genero: 'mujer' },
-      { id: 20, nombre: 'Enterizo Casual', precio: 149.90, genero: 'mujer' },
-      { id: 21, nombre: 'Pantalón Chino Hombre', precio: 119.90, genero: 'hombre' },
-      { id: 22, nombre: 'Polera con Capucha', precio: 99.90, precioAnterior: 129.90, genero: 'mujer' },
-      { id: 23, nombre: 'Pantalón Jogger Hombre', precio: 89.90, genero: 'hombre' },
-      { id: 24, nombre: 'Camiseta Estampada', precio: 59.90, genero: 'hombre' },
-      { id: 25, nombre: 'Casaca Bomber Hombre', precio: 189.90, genero: 'hombre' },
-      { id: 26, nombre: 'Camisa Slim Fit', precio: 119.90, genero: 'hombre' },
-      { id: 27, nombre: 'Polo Básico Hombre', precio: 39.90, genero: 'hombre' },
-      { id: 28, nombre: 'Short Cargo Hombre', precio: 79.90, genero: 'hombre' },
-      { id: 29, nombre: 'Chaleco Acolchado', precio: 139.90, genero: 'hombre' },
-      { id: 30, nombre: 'Casaca Impermeable', precio: 159.90, precioAnterior: 199.90, genero: 'hombre' }
+      { id: 1, nombre: 'Polera Negra', precio: 89.90, precioAnterior: 119.90, genero: 'hombre', categoria: 'poleras' },
+      { id: 2, nombre: 'Camiseta Blanca', precio: 49.90, precioAnterior: 69.90, genero: 'hombre', categoria: 'polos' },
+      { id: 3, nombre: 'Camisa de Jean', precio: 149.90, genero: 'hombre', categoria: 'camisas' },
+      { id: 4, nombre: 'Camisa Oxford', precio: 129.90, genero: 'hombre', categoria: 'camisas' },
+      { id: 5, nombre: 'Polo de Algodón', precio: 69.90, genero: 'hombre', categoria: 'polos' },
+      { id: 6, nombre: 'Casaca Urbana', precio: 179.90, precioAnterior: 219.90, destacado: true, genero: 'hombre', categoria: 'casacas' },
+      { id: 7, nombre: 'Saco negro', precio: 229.90, genero: 'hombre', categoria: 'blazers' },
+      { id: 8, nombre: 'Camisa Manga Corta', precio: 99.90, precioAnterior: 119.90, genero: 'hombre', categoria: 'camisas' },
+      { id: 9, nombre: 'Camisa Casual', precio: 109.90, genero: 'hombre', categoria: 'camisas' },
+      { id: 10, nombre: 'Chaqueta Denim', precio: 149.90, precioAnterior: 189.90, genero: 'hombre', categoria: 'casacas' },
+      { id: 11, nombre: 'Blusa Floral', precio: 79.90, precioAnterior: 99.90, genero: 'mujer', categoria: 'blusas' },
+      { id: 12, nombre: 'Falda Plisada', precio: 89.90, genero: 'mujer', categoria: 'faldas' },
+      { id: 13, nombre: 'Vestido Midi', precio: 139.90, precioAnterior: 169.90, genero: 'mujer', categoria: 'vestidos' },
+      { id: 14, nombre: 'Top de Encaje', precio: 59.90, genero: 'mujer', categoria: 'blusas' },
+      { id: 15, nombre: 'Pantalón Palazzo', precio: 119.90, genero: 'mujer', categoria: 'pantalones' },
+      { id: 16, nombre: 'Falda-Short de Jean Mujer', precio: 69.90, genero: 'mujer', categoria: 'shorts' },
+      { id: 17, nombre: 'Casaca Oversize Mujer', precio: 199.90, precioAnterior: 239.90, genero: 'mujer', categoria: 'casacas' },
+      { id: 18, nombre: 'Blazer Femenino', precio: 159.90, genero: 'mujer', categoria: 'blazers' },
+      { id: 19, nombre: 'Jogger Deportivo Mujer', precio: 89.90, genero: 'mujer', categoria: 'pantalones' },
+      { id: 20, nombre: 'Enterizo Casual', precio: 149.90, genero: 'mujer', categoria: 'enterizos' },
+      { id: 21, nombre: 'Pantalón Chino Hombre', precio: 119.90, genero: 'hombre', categoria: 'pantalones' },
+      { id: 22, nombre: 'Polera con Capucha', precio: 99.90, precioAnterior: 129.90, genero: 'mujer', categoria: 'poleras' },
+      { id: 23, nombre: 'Pantalón Jogger Hombre', precio: 89.90, genero: 'hombre', categoria: 'pantalones' },
+      { id: 24, nombre: 'Camiseta Estampada', precio: 59.90, genero: 'hombre', categoria: 'polos' },
+      { id: 25, nombre: 'Casaca Bomber Hombre', precio: 189.90, genero: 'hombre', categoria: 'casacas' },
+      { id: 26, nombre: 'Camisa Slim Fit', precio: 119.90, genero: 'hombre', categoria: 'camisas' },
+      { id: 27, nombre: 'Polo Básico Hombre', precio: 39.90, genero: 'hombre', categoria: 'polos' },
+      { id: 28, nombre: 'Short Cargo Hombre', precio: 79.90, genero: 'hombre', categoria: 'shorts' },
+      { id: 29, nombre: 'Chaleco Acolchado', precio: 139.90, genero: 'hombre', categoria: 'chalecos' },
+      { id: 30, nombre: 'Casaca Impermeable', precio: 159.90, precioAnterior: 199.90, genero: 'hombre', categoria: 'casacas' }
     ];
 
     const container = document.getElementById('productos-container');
 
     function renderProductos() {
       const generoSeleccionado = document.getElementById('filtroGenero').value;
+      const categoriaSeleccionada = document.getElementById('filtroCategoria').value;
       const ordenSeleccionado = document.getElementById('ordenPrecio').value;
 
-      let filtrados = productos.filter(p => generoSeleccionado === 'todos' || p.genero === generoSeleccionado);
+      let filtrados = productos.filter(p =>
+        (generoSeleccionado === 'todos' || p.genero === generoSeleccionado) &&
+        (categoriaSeleccionada === 'todas' || p.categoria === categoriaSeleccionada)
+      );
 
       if (ordenSeleccionado === 'menor') {
         filtrados.sort((a, b) => a.precio - b.precio);
@@ -428,6 +434,17 @@
       }
 
       container.innerHTML = '';
+
+      if (filtrados.length === 0) {
+        container.innerHTML = `
+        <div class="d-flex justify-content-center align-items-center w-100" style="min-height: 320px;">
+        <div class="text-center text-muted mt-5">
+        <p class="fs-5">No hay productos disponibles para esta categoría o filtro seleccionado.</p>
+        <div style="height: 150px;"></div>
+        </div>
+        </div>`;
+        return;
+      }
 
       filtrados.forEach(item => {
         const col = document.createElement('div');
@@ -493,6 +510,8 @@
     renderProductos();
     document.getElementById('filtroGenero').addEventListener('change', renderProductos);
     document.getElementById('ordenPrecio').addEventListener('change', renderProductos);
+    document.getElementById('filtroCategoria').addEventListener('change', renderProductos);
+
 
     function eliminarParpadeo() {
       const observer = new MutationObserver((mutations) => {

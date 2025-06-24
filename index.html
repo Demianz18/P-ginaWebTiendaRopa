@@ -18,17 +18,25 @@
   <!-- Animación de entrada -->
   <style>
     html {
-      background: #444444;
+      background: #444;
     }
 
     body {
       background-color: black;
+      margin: 0;
     }
 
     main {
       opacity: 0;
       filter: blur(10px);
-      transition: opacity 1s ease, filter 1s ease;
+      animation: fadeInBlur 1s ease forwards;
+    }
+
+    @keyframes fadeInBlur {
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
     }
 
     main.fade-in {
@@ -56,20 +64,13 @@
     }
   </style>
 
-
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('main').classList.add('fade-in');
-    });
-  </script>
-
 </head>
 
 <body>
   <div id="header"></div>
 
-  <!-- Carrito fijo en la esquina superior derecha, siempre visible -->
-  <div class="position-fixed" style="top: 27px; right: 45px; z-index: 1050;">
+  <!-- Carrito fijo en la esquina superior derecha con animación suave -->
+  <div id="carritoIcono" class="position-fixed animate-carrito" style="top: 27px; right: 45px; z-index: 1050;">
     <a href="#" class="position-relative text-decoration-none" data-bs-toggle="offcanvas"
       data-bs-target="#carritoOffcanvas">
       <i class="bi bi-bag-fill text-white fs-4"></i>
@@ -79,24 +80,6 @@
       </span>
     </a>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const carritoBtn = document.querySelector('.position-fixed');
-      const offcanvasEl = document.getElementById('carritoOffcanvas');
-
-      if (carritoBtn && offcanvasEl) {
-        offcanvasEl.addEventListener('show.bs.offcanvas', function () {
-          carritoBtn.classList.add('d-none');
-        });
-
-        offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
-          carritoBtn.classList.remove('d-none');
-        });
-      }
-    });
-  </script>
-
 
   <!-- OFFCANVAS DEL CARRITO -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas">
@@ -209,10 +192,12 @@
         <style>
           .producto-enlace {
             display: block;
-            width: 400px;
+            width: 350px;
+            /* ancho más angosto */
             text-decoration: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 8px;
+            border-radius: 0;
+            /* bordes rectos */
             overflow: hidden;
           }
 
@@ -237,13 +222,17 @@
             font-size: 16px;
           }
 
+          /* OFERTA (id=5) */
           .oferta-contenedor {
             position: relative;
-            width: 400px;
-            height: 380px;
+            width: 350px;
+            /* mismo ancho */
+            height: 420px;
+            /* mismo alto que los demás */
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 8px;
+            border-radius: 0;
+            /* bordes rectos */
           }
 
           .oferta-contenedor:hover {
@@ -266,8 +255,11 @@
 
           .oferta-img {
             width: 100%;
-            height: 110%;
-            border-radius: 10px;
+            height: 420px;
+            /* igual altura que los demás */
+            object-fit: cover;
+            border-radius: 0;
+            /* bordes rectos */
             display: block;
           }
         </style>

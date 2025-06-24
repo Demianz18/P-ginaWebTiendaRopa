@@ -111,6 +111,9 @@ body {
   /* Color de fondo */
   border-radius: 20px;
   /* Bordes redondeados */
+  align-items: stretch;
+  /* Para que todas las columnas tengan misma altura */
+
 }
 
 /* Columnas individuales (Misión y Visión) */
@@ -373,4 +376,29 @@ body {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+
+@keyframes zoomBounceSoft {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  80% {
+    transform: scale(0.97);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-carrito {
+  animation: zoomBounceSoft 0.6s ease-out forwards;
 }

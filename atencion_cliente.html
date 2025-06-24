@@ -118,8 +118,8 @@
   <!-- Header cargado dinámicamente -->
   <div id="header"></div>
 
-  <!-- Carrito fijo en la esquina superior derecha, siempre visible -->
-  <div class="position-fixed" style="top: 27px; right: 45px; z-index: 1050;">
+  <!-- Carrito fijo en la esquina superior derecha con animación suave -->
+  <div id="carritoIcono" class="position-fixed animate-carrito" style="top: 27px; right: 45px; z-index: 1050;">
     <a href="#" class="position-relative text-decoration-none" data-bs-toggle="offcanvas"
       data-bs-target="#carritoOffcanvas">
       <i class="bi bi-bag-fill text-white fs-4"></i>
@@ -130,22 +130,6 @@
     </a>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const carritoBtn = document.querySelector('.position-fixed');
-      const offcanvasEl = document.getElementById('carritoOffcanvas');
-
-      if (carritoBtn && offcanvasEl) {
-        offcanvasEl.addEventListener('show.bs.offcanvas', function () {
-          carritoBtn.classList.add('d-none');
-        });
-
-        offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
-          carritoBtn.classList.remove('d-none');
-        });
-      }
-    });
-  </script>
 
 
   <!-- OFFCANVAS DEL CARRITO -->
