@@ -13,30 +13,38 @@ function cargarHTML(id, archivo) {
 // Actualiza el header con avatar del usuario o enlace de login
 function actualizarHeaderConUsuario() {
   const userArea = document.getElementById('userArea');
+  const userAreaMovil = document.querySelector('.navbar-nav.d-lg-none');
   const usuario = JSON.parse(localStorage.getItem('usuarioUrbanVibe'));
 
-  if (!userArea) return;
+  if (!userArea || !userAreaMovil) return;
 
   if (usuario) {
     const nombreCompleto = `${usuario.nombre} ${usuario.apellido}`;
     const avatarURL = `https://ui-avatars.com/api/?name=${encodeURIComponent(nombreCompleto)}&background=000&color=fff&size=64`;
 
-    userArea.innerHTML = `
-      <li class="nav-item d-flex align-items-center gap-2">
-        <img src="${avatarURL}" alt="Avatar" class="rounded-circle" width="50" height="50">
+    const contenidoHTML = `
+      <li class="nav-item d-flex align-items-center gap-2 justify-content-center">
+        <img src="${avatarURL}" alt="Avatar" class="rounded-circle" width="40" height="40">
         <a href="#" class="btn btn-sm btn-outline-light rounded-pill cerrar-sesion ms-2 px-3 py-1">
           Cerrar sesión
         </a>
       </li>
     `;
 
-    const cerrarSesionBtn = userArea.querySelector('.cerrar-sesion');
-    cerrarSesionBtn?.addEventListener('click', (e) => {
-      e.preventDefault();
-      localStorage.removeItem('usuarioUrbanVibe');
-      location.reload();
+    userArea.innerHTML = contenidoHTML;
+    userAreaMovil.innerHTML = contenidoHTML;
+
+    const cerrarSesionBtns = document.querySelectorAll('.cerrar-sesion');
+    cerrarSesionBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('usuarioUrbanVibe');
+        location.reload();
+      });
     });
+
   } else {
+    // Vista para usuarios no logueados
     userArea.innerHTML = `
       <li class="nav-item mx-2">
         <a class="nav-link text-light fw-light" href="/login.html">
@@ -44,8 +52,17 @@ function actualizarHeaderConUsuario() {
         </a>
       </li>
     `;
+
+    userAreaMovil.innerHTML = `
+      <li class="nav-item m-0 p-0">
+        <a class="nav-link text-light fw-light py-2" href="/login.html" style="margin: 0;">
+          Ingresar | Registrarse
+        </a>
+      </li>
+    `;
   }
 }
+
 
 // Ajuste responsive de columnas
 function ajustarColumnas() {
