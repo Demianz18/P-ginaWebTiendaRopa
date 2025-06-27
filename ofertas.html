@@ -143,6 +143,43 @@
     .card:hover .detalle-overlay {
       opacity: 1;
     }
+
+    /* RESPONSIVO MÓVIL */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 80px;
+      }
+
+      .card-img-top {
+        height: 400px;
+        object-fit: cover;
+      }
+
+      .card {
+        margin-bottom: 20px;
+        border-radius: 10px;
+      }
+
+      .detalle-overlay {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .filtros select {
+        width: 100%;
+        min-width: unset;
+        margin-bottom: 10px;
+      }
+
+      #header,
+      #footer {
+        min-height: 50px;
+      }
+
+      main {
+        padding: 0 15px;
+      }
+    }
   </style>
 </head>
 
@@ -411,7 +448,7 @@
   </script>
 
   <script src="script.js"></script>
-  
+
   <script>
     function eliminarParpadeo() {
       const observer = new MutationObserver((mutations) => {

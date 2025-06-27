@@ -51,12 +51,12 @@ body {
 /* --- ¿Quiénes Somos? --- */
 .quienes-somos {
   background-color: #fff;
-  padding: 70px 20px;
+  margin-top: 40px;
+  padding: 40px 30px;
 }
 
 .quienes-content {
   max-width: 850px;
-
   margin: 0 auto;
   text-align: center;
 }
@@ -64,10 +64,9 @@ body {
 .quienes-titulo {
   font-family: 'Monserrat', sans-serif;
   font-size: 40px;
-  /* Aumentado */
   font-weight: 600;
   color: #141515;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   text-transform: uppercase;
   letter-spacing: 0.3rem;
 }
@@ -80,114 +79,121 @@ body {
   font-size: 15px;
   letter-spacing: normal;
   line-height: 1.4em;
-  padding: 50px;
+  padding: 40px;
   max-width: 900px;
-  /* ajusta según necesites */
-  width: 400%;
-  /* o un valor fijo como 600px */
+  width: 100%;
   margin: 0 auto;
-  /* centra horizontalmente */
 }
 
-/* TODO EL ÁMBITO DE MISIÓN Y VISIÓN */
-
-/* Contenedor principal de Misión y Visión */
+/* --- Misión y Visión --- */
 .mision-vision {
   display: flex;
-  /* Organiza las columnas en fila */
   flex-wrap: wrap;
-  /* Permite que se ajusten en pantallas pequeñas */
   justify-content: center;
-  /* Centra horizontalmente */
   gap: 40px;
-  /* Espacio entre las columnas */
   padding: 10px 20px;
-  /* Espacio interior (arriba/abajo y laterales) */
   max-width: 1200px;
-  /* Ancho máximo del contenedor */
-  margin: 40px auto 0;
-  /* 40px arriba, centrado horizontal, 0 abajo */
+  margin: 20px auto 0;
   background: #fafafa;
-  /* Color de fondo */
   border-radius: 20px;
-  /* Bordes redondeados */
   align-items: stretch;
-  /* Para que todas las columnas tengan misma altura */
-
 }
 
-/* Columnas individuales (Misión y Visión) */
+
 .columna {
   flex: 1 1 45%;
-  /* Permite ajustar el ancho flexible (45% para dos columnas) */
   background-color: white;
-  /* Fondo blanco */
   padding: 30px;
-  /* Espaciado interior */
   border-radius: 16px;
-  /* Bordes redondeados */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  /* Sombra suave */
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.08);
   text-align: center;
-  /* Texto centrado */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* Animación al pasar el cursor */
   min-width: 400px;
-  /* Ajuste mínimo para asegurar el mismo tamaño */
   max-width: 500px;
-  /* Ajuste máximo para mantener proporciones */
 }
 
-/* Efecto hover (cuando el cursor pasa por encima) */
 .columna:hover {
   transform: translateY(-5px);
-  /* Desplaza hacia arriba 5px */
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-  /* Aumenta la sombra */
 }
 
-/* Imagen dentro de las columnas */
 .columna img {
   max-width: 400px;
-  /* Ancho máximo para no distorsionar */
   margin-bottom: 20px;
-  /* Espacio debajo de la imagen */
   height: auto;
-  /* Ajuste de altura automático */
   display: block;
-  /* Ocupa todo el ancho disponible */
   margin: 0 auto 20px;
-  /* Centra la imagen horizontalmente */
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-  /* Sombra de la imagen */
 }
 
-/* Título dentro de las columnas */
 .columna h2 {
   font-size: 26px;
-  /* Tamaño de fuente */
   margin-bottom: 15px;
-  /* Espacio debajo del título */
   color: #222;
-  /* Color del texto */
   font-weight: 700;
-  /* Negrita */
   letter-spacing: 1px;
-  /* Espaciado entre letras */
 }
 
-/* Párrafo dentro de las columnas */
 .columna p {
   font-family: 'Raleway', sans-serif;
-  /* Fuente externa */
   text-align: justify;
-  /* Texto justificado */
   font-size: 16px;
-  /* Tamaño de fuente */
   color: #555;
-  /* Color del texto */
   line-height: 1.6;
-  /* Espaciado entre líneas */
+}
+
+/* --- RESPONSIVO PARA MÓVILES --- */
+@media (max-width: 768px) {
+  .intro-title {
+    font-size: 40px;
+    padding: 0 10px;
+    line-height: 1.4;
+  }
+
+  .video-img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .video-caption {
+    font-size: 13px;
+  }
+
+  .quienes-titulo {
+    font-size: 28px;
+    letter-spacing: 0.1rem;
+  }
+
+  .quienes-info {
+    font-size: 14px;
+    padding: 25px;
+  }
+
+  .mision-vision {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 10px;
+  }
+
+  .columna {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .columna img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .columna h2 {
+    font-size: 22px;
+  }
+
+  .columna p {
+    font-size: 14px;
+    text-align: left;
+  }
 }
 
 /*--- Apartado de Carrito ---*/

@@ -18,39 +18,105 @@
         .navbar-nav .nav-link:hover {
             color: #afadad !important;
         }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                align-items: center !important;
+                margin-top: 0;
+                /* Espacio arriba */
+                margin-bottom: 0 !important;
+                /* Quitar espacio abajo */
+            }
+
+            .navbar-nav .nav-link {
+                text-align: center;
+                margin: 0 !important;
+                padding: 12px 0 !important;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                /* Línea divisoria sutil */
+            }
+
+            .navbar-nav .nav-link:last-child {
+                border-bottom: none;
+                /* No mostrar línea debajo del último */
+            }
+
+            .separador-movil-estilizado {
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(to right, transparent, #aaa, transparent);
+                margin: 0;
+                /* Quita espacio arriba y abajo */
+                opacity: 0.6;
+            }
+
+
+            .separador-movil {
+                width: 60%;
+                height: 1px;
+                margin: 0;
+                /* Elimina todo el espacio */
+                background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            }
+
+            .navbar-collapse .d-flex.align-items-center.gap-5,
+            .navbar-collapse .d-flex.align-items-center.gap-3 {
+                flex-direction: column;
+                align-items: center !important;
+                gap: 1rem !important;
+                margin-top: 1.5rem;
+                margin-bottom: 0 !important;
+            }
+        }
     </style>
+
+
 </head>
 
 <body style="margin-top: 100px;">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-sm border-bottom py-3 fixed-top"
         style="border-color: #afadad !important; font-family: 'Raleway';">
-        <div class="container-fluid px-5">
-            <!-- TOGGLER -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+        <div class="container-fluid px-3 px-lg-5 position-relative">
+
+            <!-- TOGGLER (Ícono hamburguesa a la izquierda) -->
+            <button class="navbar-toggler border-0 z-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- LOGO CENTRADO EN MÓVIL -->
+            <a class="navbar-brand position-absolute start-50 translate-middle-x top-0 mt-0 d-lg-none fw-semibold m-0"
+                style="font-size: 24px; letter-spacing: 3px;" href="index.html">
+                <span style="color: #afadad; font-weight: 400;">Urban</span>
+                <span style="color: #ffffff; font-weight: 600;">Vibe</span>
+            </a>
+
             <!-- CONTENIDO DE LA NAVBAR -->
             <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-                <div class="d-flex justify-content-between w-100 align-items-center">
+                <div
+                    class="d-flex justify-content-between w-100 align-items-center flex-column flex-lg-row mt-3 mt-lg-0">
 
-                    <!-- BLOQUE IZQUIERDO VACÍO -->
+                    <!-- BLOQUE IZQUIERDO (solo visible en PC) -->
                     <div class="d-none d-lg-block" style="width: 150px;"></div>
 
-                    <!-- BLOQUE CENTRAL -->
-                    <div class="d-flex flex-column flex-lg-row align-items-center gap-5 text-center">
-                        <!-- LOGO -->
-                        <a class="navbar-brand fw-semibold m-1" style="font-size: 28px; letter-spacing: 3.5px;"
-                            href="index.html">
+                    <!-- BLOQUE CENTRAL: LOGO + ENLACES -->
+                    <div class="d-flex flex-column flex-lg-row align-items-center gap-4 text-center">
+
+                        <!-- LOGO EN PANTALLAS GRANDES -->
+                        <a class="navbar-brand fw-semibold m-1 d-none d-lg-block"
+                            style="font-size: 28px; letter-spacing: 3.5px;" href="index.html">
                             <span style="color: #afadad; font-weight: 400;">Urban</span>
                             <span style="color: #ffffff; font-weight: 600;">Vibe</span>
                         </a>
 
                         <!-- ENLACES -->
-                        <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-center gap-5">
+                        <!-- Separador estilizado solo visible en móvil -->
+                        <div class="separador-movil-estilizado d-lg-none"></div>
+                        
+                        <ul class="navbar-nav d-flex flex-column flex-lg-row justify-content-center gap-2 gap-lg-5">
                             <li class="nav-item">
                                 <a class="nav-link text-light fw-light" href="index.html">Inicio</a>
                             </li>
@@ -61,44 +127,46 @@
                                 <a class="nav-link text-light fw-light" href="ofertas.html">Ofertas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light fw-light" href="atencion_cliente.html">
-                                    Atención al cliente
-                                </a>
+                                <a class="nav-link text-light fw-light" href="atencion_cliente.html">Atención al
+                                    cliente</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light fw-light" href="sobre_urbanvibe.html">
-                                    Sobre Urban Vibe
-                                </a>
+                                <a class="nav-link text-light fw-light" href="sobre_urbanvibe.html">Sobre Urban Vibe</a>
                             </li>
                         </ul>
+                        <!-- Separador solo visible en móvil -->
+                        <div class="separador-movil d-lg-none"></div>
+                        <!-- ENLACE DE LOGIN - SOLO EN MÓVIL -->
+                        <ul class="navbar-nav d-flex flex-column d-lg-none w-100 text-center m-0 p-0">
+                            <li class="nav-item m-0 p-0">
+                                <a class="nav-link text-light fw-light py-2" href="/login.html"
+                                    style="margin: 0;">Ingresar | Registrarse</a>
+                            </li>
+                        </ul>
+
                     </div>
 
-                    <!-- BLOQUE DERECHO: login y carrito -->
-                    <div class="d-flex align-items-center gap-5" style="min-width: 150px;">
-                        <!-- LOGIN -->
+                    <!-- BLOQUE DERECHO: LOGIN - SOLO EN ESCRITORIO -->
+                    <div class="d-none d-lg-flex align-items-center gap-3 mt-3 mt-lg-0" style="min-width: 150px;">
                         <ul class="navbar-nav d-flex flex-row" id="userArea">
                             <li class="nav-item mx-2">
-                                <a class="nav-link text-light fw-light" href="/login.html">
-                                    Ingresar | Registrarse
-                                </a>
+                                <a class="nav-link text-light fw-light" href="/login.html">Ingresar | Registrarse</a>
                             </li>
                         </ul>
-
-                        <!-- ESPACIO PARA EL CARRITO -->
                         <div style="width: 20px; height: 30px;"></div>
-
                     </div>
+
                 </div>
             </div>
         </div>
     </nav>
 
+
+
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container">
         <!-- Aquí va el contenido de la página -->
     </main>
-
-
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

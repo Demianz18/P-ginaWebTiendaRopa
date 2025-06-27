@@ -14,155 +14,192 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <style>
-    html {
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+  html {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  html.loaded {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  #header,
+  #footer {
+    min-height: 60px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 4px;
+  }
+
+  #header.loaded,
+  #footer.loaded {
+    background: none;
+    animation: none;
+    min-height: auto;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  main {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+  }
+
+  main.loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    padding-top: 100px;
+  }
+
+  .card-img-top {
+    border-radius: 15px 15px 0 0;
+    object-fit: fill;
+    height: 280px;
+    width: 100%;
+    filter: brightness(0.95);
+    transition: filter 0.3s ease;
+  }
+
+  .card-img-top:hover {
+    filter: brightness(1);
+  }
+
+  .card {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.4s ease forwards;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .card:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  .card:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .card:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+
+  .card:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+
+  .card:nth-child(n+5) {
+    animation-delay: 0.25s;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .detalle-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .card:hover .detalle-overlay {
+    opacity: 1;
+  }
+
+  .filtro-estilo {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.2s infinite;
+  }
+
+  .filtros select {
+    min-width: 200px;
+    border-radius: 10px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    transition: box-shadow 0.2s;
+  }
+
+  .filtros select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(160, 160, 160, 0.4);
+  }
+
+  /* RESPONSIVO MÓVIL */
+  @media (max-width: 768px) {
+    body {
+      padding-top: 80px;
     }
 
-    html.loaded {
-      visibility: visible;
-      opacity: 1;
+    .card-img-top {
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    .detalle-overlay {
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .filtros select {
+      width: 100%;
+      min-width: unset;
+      margin-bottom: 10px;
     }
 
     #header,
     #footer {
-      min-height: 60px;
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: skeleton-loading 1.5s infinite;
-      border-radius: 4px;
-    }
-
-    #header.loaded,
-    #footer.loaded {
-      background: none;
-      animation: none;
-      min-height: auto;
-    }
-
-    @keyframes skeleton-loading {
-      0% {
-        background-position: 200% 0;
-      }
-
-      100% {
-        background-position: -200% 0;
-      }
+      min-height: 50px;
     }
 
     main {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.5s ease;
+      padding: 0 15px;
     }
+  }
+</style>
 
-    main.loaded {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    body {
-      font-family: 'Raleway', sans-serif;
-      padding-top: 100px;
-    }
-
-    .card-img-top {
-      border-radius: 15px 15px 0 0;
-      object-fit: fill;
-      height: 280px;
-      width: 100%;
-      filter: brightness(0.95);
-      transition: filter 0.3s ease;
-    }
-
-    .card-img-top:hover {
-      filter: brightness(1);
-    }
-
-    .card {
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.4s ease forwards;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    }
-
-    .card:nth-child(1) {
-      animation-delay: 0.05s;
-    }
-
-    .card:nth-child(2) {
-      animation-delay: 0.1s;
-    }
-
-    .card:nth-child(3) {
-      animation-delay: 0.15s;
-    }
-
-    .card:nth-child(4) {
-      animation-delay: 0.2s;
-    }
-
-    .card:nth-child(n+5) {
-      animation-delay: 0.25s;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .detalle-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-radius: 15px 15px 0 0;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-    }
-
-    .card:hover .detalle-overlay {
-      opacity: 1;
-    }
-
-    .filtro-estilo {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: skeleton-loading 1.2s infinite;
-    }
-
-    .filtros select {
-      min-width: 200px;
-      border-radius: 10px;
-      padding: 6px 10px;
-      border: 1px solid #ccc;
-      transition: box-shadow 0.2s;
-    }
-
-    .filtros select:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(160, 160, 160, 0.4);
-    }
-  </style>
 </head>
 
 <body>
@@ -179,6 +216,22 @@
       </span>
     </a>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const carritoBtn = document.querySelector('.position-fixed');
+      const offcanvasEl = document.getElementById('carritoOffcanvas');
+
+      if (carritoBtn && offcanvasEl) {
+        offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+          carritoBtn.classList.add('d-none');
+        });
+
+        offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
+          carritoBtn.classList.remove('d-none');
+        });
+      }
+    });
+  </script>
 
   <!-- OFFCANVAS DEL CARRITO -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas">

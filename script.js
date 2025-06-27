@@ -76,6 +76,7 @@ function ajustarColumnas() {
 function inicializarLoginYRegistro() {
   const usuarios = [];
 
+  // Tabs
   const tabs = document.querySelectorAll('[role="tab"]');
   const panels = document.querySelectorAll('[role="tabpanel"]');
 
@@ -89,6 +90,7 @@ function inicializarLoginYRegistro() {
     });
   });
 
+  // Función de validación personalizada
   function validarRegistro() {
     const nombre = document.getElementById('nombre');
     const apellido = document.getElementById('apellido');
@@ -101,32 +103,67 @@ function inicializarLoginYRegistro() {
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!regexNombre.test(nombre.value.trim())) {
-      alert("Nombre inválido."); nombre.focus(); return false;
+      alert("Nombre inválido.");
+      nombre.focus();
+      return false;
     }
 
     if (!regexNombre.test(apellido.value.trim())) {
-      alert("Apellido inválido."); apellido.focus(); return false;
+      alert("Apellido inválido.");
+      apellido.focus();
+      return false;
     }
 
     if (!fechaNacimiento.value) {
-      alert("Debes ingresar tu fecha de nacimiento."); fechaNacimiento.focus(); return false;
+      alert("Debes ingresar tu fecha de nacimiento.");
+      fechaNacimiento.focus();
+      return false;
+    } else {
+      const fechaNac = new Date(fechaNacimiento.value);
+      const hoy = new Date();
+
+      // Calcular edad exacta
+      let edad = hoy.getFullYear() - fechaNac.getFullYear();
+      const mes = hoy.getMonth() - fechaNac.getMonth();
+
+      if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+        edad--;
+      }
+
+      if (edad < 18) {
+        alert("Debes ser mayor de edad (mínimo 18 años).");
+        fechaNacimiento.focus();
+        return false;
+      }
+
+      if (edad > 100) {
+        alert("Edad no válida (máximo 100 años).");
+        fechaNacimiento.focus();
+        return false;
+      }
     }
 
     if (!sexo) {
-      alert("Debes seleccionar tu sexo."); return false;
+      alert("Debes seleccionar tu sexo.");
+      return false;
     }
 
     if (!regexEmail.test(email.value.trim())) {
-      alert("Correo electrónico inválido."); email.focus(); return false;
+      alert("Correo electrónico inválido.");
+      email.focus();
+      return false;
     }
 
     if (password.value.length < 8) {
-      alert("La contraseña debe tener al menos 8 caracteres."); password.focus(); return false;
+      alert("La contraseña debe tener al menos 8 caracteres.");
+      password.focus();
+      return false;
     }
 
     return true;
   }
 
+  // Registro
   const formRegistro = document.getElementById('panel-registrar');
   if (formRegistro) {
     formRegistro.addEventListener('submit', function (e) {
@@ -146,6 +183,7 @@ function inicializarLoginYRegistro() {
     });
   }
 
+  // Login
   const formLogin = document.getElementById('panel-login');
   if (formLogin) {
     formLogin.addEventListener('submit', function (e) {
@@ -158,8 +196,10 @@ function inicializarLoginYRegistro() {
 
       if (usuario) {
         localStorage.setItem('usuarioUrbanVibe', JSON.stringify(usuario));
-        alert("Inicio de sesión exitoso.");
-        cargarHTML("header", "header/header.html");
+        alert("Inicio de sesión exitoso. Redirigiendo...");
+        setTimeout(() => {
+          window.location.href = "/index.html";
+        }, 2000);
       } else {
         alert("Correo o contraseña incorrectos.");
       }
@@ -185,21 +225,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Script para ocultar el ícono mientras el offcanvas está abierto y reiniciar animación al cerrarse -->
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const carritoBtn = document.getElementById('carritoIcono');
-    const offcanvasEl = document.getElementById('carritoOffcanvas');
+document.addEventListener('DOMContentLoaded', function () {
+  const carritoBtn = document.getElementById('carritoIcono');
+  const offcanvasEl = document.getElementById('carritoOffcanvas');
 
-    if (carritoBtn && offcanvasEl) {
-      offcanvasEl.addEventListener('show.bs.offcanvas', function () {
-        carritoBtn.classList.add('d-none');
-      });
+  if (carritoBtn && offcanvasEl) {
+    offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+      carritoBtn.classList.add('d-none');
+    });
 
-      offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
-        carritoBtn.classList.remove('d-none');
-        // Reiniciar animación
-        carritoBtn.classList.remove('animate-carrito');
-        void carritoBtn.offsetWidth;
-        carritoBtn.classList.add('animate-carrito');
-      });
-    }
-  });
+    offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
+      carritoBtn.classList.remove('d-none');
+      // Reiniciar animación
+      carritoBtn.classList.remove('animate-carrito');
+      void carritoBtn.offsetWidth;
+      carritoBtn.classList.add('animate-carrito');
+    });
+  }
+});
