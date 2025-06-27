@@ -6,10 +6,29 @@
   <title>Formulario de Pago</title>
   <link rel="icon" href="img/favicon.png" type="image/png">
   <link rel="stylesheet" href="style.css" />
+  <!-- Script para insertar header y footer -->
+  <script defer src="script.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
+    /* Animación de entrada: fade-in-up */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
     body {
       font-family: 'Raleway', sans-serif;
       background-color: #f9f9f9;
@@ -256,7 +275,7 @@
   <div id="header"></div>
 
   <main>
-    <div class="formulario-pago-container" role="main" aria-label="Formulario de pago y resumen de pedido">
+    <div class="formulario-pago-container fade-in-up" role="main" aria-label="Formulario de pago y resumen de pedido">
 
       <form id="form-pago" onsubmit="return simularPago()" novalidate>
         <h3>Información del Comprador</h3>
@@ -488,6 +507,7 @@
       totalEl.textContent = formatoMoneda(total);
     }
 
+    // CARGAR RESUMEN DE PEDIDO
     document.addEventListener('DOMContentLoaded', () => {
       fetch("header/header.html").then(res => res.text()).then(data => {
         document.getElementById("header").innerHTML = data;
@@ -516,7 +536,7 @@
       return false;
     }
   </script>
-  
+
   <!-- Bootstrap JS necesario para que el header se despliegue -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
