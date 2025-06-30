@@ -260,3 +260,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// Obtener el parámetro 'email' de la URL
+const params = new URLSearchParams(window.location.search);
+const email = params.get('email');
+
+// Insertarlo en el input si existe
+if (email) {
+  document.getElementById('email-input').value = email;
+}
+
