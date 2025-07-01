@@ -195,7 +195,7 @@
         <p><strong>Email:</strong><br>info@urbanvibe.com</p>
       </div>
 
-      <form>
+      <form id="form-contacto">
         <input type="text" placeholder="Nombre" required>
         <input type="email" id="email-input" placeholder="Tu correo electrónico">
         <input type="tel" placeholder="Teléfono">
@@ -204,6 +204,22 @@
       </form>
     </div>
   </section>
+
+  <!-- Este mensaje debe ir justo después del </form> -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+    <div id="toast-exito" class="toast align-items-center text-white bg-secondary border-0" role="alert"
+      aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          ¡Tu mensaje ha sido enviado correctamente!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+
 
   <!-- Separador -->
   <hr style="width: 90%; height: 1px; background-color: #000; border: none; margin: 25px auto;">
@@ -379,6 +395,24 @@
 
   <!-- Script para cargar header y footer -->
   <script src="script.js"></script>
+
+  <!-- Se muestra mensaje de envío exitoso -->
+  <script>
+    document.getElementById('form-contacto').addEventListener('submit', function (event) {
+      event.preventDefault(); // Evita recargar la página
+
+      const toastElement = document.getElementById('toast-exito');
+      const toast = new bootstrap.Toast(toastElement, {
+        delay: 1500 // ⏱️ 1.5 segundos
+      });
+
+      toast.show(); // Mostrar el toast
+
+      this.reset(); // Limpiar el formulario
+    });
+  </script>
+
+
 </body>
 
 </html>
